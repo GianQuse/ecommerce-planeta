@@ -29,10 +29,10 @@ export const CheckCart = () => {
         const collectionRef = collection(db, "orders");
         const orderData = {
             comprador: {
-                nombre: values.nombre,
-                apellido: values.apellido,
-                direccion: values.direccion,
-                telefono: values.telefono,
+                nombre: values.nombre.toUpperCase(),
+                apellido: values.apellido.toUpperCase(),
+                direccion: values.direccion.toUpperCase(),
+                telefono: values.telefono.toUpperCase(),
             },
             total: totalPrice(),
             productos: cart,

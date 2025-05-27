@@ -3,7 +3,7 @@ import { useApiMenu } from '../hooks/useApi';
 import Skeleton from './Skeleton';
 
 export function ItemMenuContainer() {
-  const { items, loading } = useApiMenu();
+  const { items, loading } = useApiMenu('menu');
 
   const skeletonVariants = {
     width: '85%',

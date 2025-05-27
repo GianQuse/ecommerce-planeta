@@ -1,0 +1,88 @@
+/* Pedidos.module.css */
+
+.pedidosContainer {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #1f2937;
+}
+
+.loading,
+.noPedidos {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    color: #6b7280;
+}
+
+/* Contenedor de todos los pedidos con diseño responsive */
+.pedidosGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.pedidoItem {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+    flex: 1 1 calc(50% - 1.5rem); /* 2 por fila con espacio entre ellos */
+    max-width: calc(50% - 1.5rem);
+    box-sizing: border-box;
+}
+
+.pedidoItem:hover {
+    transform: scale(1.01);
+}
+
+@media (max-width: 768px) {
+    .pedidoItem {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+.pedidoItem h3 {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: #111827;
+    border-bottom: 1px solid #d1d5db;
+    padding-bottom: 0.3rem;
+}
+
+.pedidoItem p {
+    margin: 0.3rem 0;
+    line-height: 1.5;
+}
+
+.productosLista {
+    margin-top: 0.5rem;
+    padding-left: 1.2rem;
+    list-style-type: disc;
+}
+
+.productosLista li {
+    margin: 0.2rem 0;
+    color: #374151;
+}
+
+.total {
+    font-size: 1.3rem;
+}
+
+.totalNumber {
+    color: #10b981;
+    font-weight: bold;
+}

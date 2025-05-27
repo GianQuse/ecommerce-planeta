@@ -10,6 +10,7 @@ import { Footer } from './componentes/Footer.jsx';
 import FloatingCart from './componentes/Cart/FloatingCart.jsx';
 import { createFirebaseApp } from './utils/configFirebase.js';
 import { CheckCart } from './componentes/Cart/CheckCart.jsx';
+import { Pedidos } from './componentes/Admin/Pedidos.jsx';
 import './style.css';
 
 function App() {
@@ -27,8 +28,9 @@ function App() {
             <Route path="/detail/:ID" element={<ItemDetailContainer />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkcart" element={<CheckCart />} />
+            <Route path="/admin" element={<Pedidos />} />
           </Routes>
-          <FloatingCart/>
+          <FloatingCart />
         </CartProvider>
         <Footer />
       </div>

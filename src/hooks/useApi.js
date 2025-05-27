@@ -7,14 +7,14 @@ export function useApiState() {
     return { items, setItems, loading, setLoading };
 }
 
-export function useApiMenu() {
+export function useApiMenu(data) {
     const { items, setItems, loading, setLoading } = useApiState();
 
     useEffect(() => {
         const db = getFirestore()
-        const menuCollection = collection(db, 'menu');
+        const menuCollection = collection(db, `${data}`);
         getDocs(menuCollection).then((response) => {
-            const responseMapped = response.docs.map((doc) => ({ ...doc.data() }));
+            const responseMapped = response.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
             setItems(responseMapped);
         }).finally(() => {
             setLoading(false);
@@ -22,7 +22,7 @@ export function useApiMenu() {
     }, []);
 
     return { items, loading };
-}
+} 
 
 export function useApiList(categoria) {
     const { items, setItems, loading, setLoading } = useApiState();
