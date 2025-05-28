@@ -4,8 +4,6 @@ import styles from './Pedidos.module.css';
 export const Pedidos = () => {
     const { items, loading } = useApiMenu('orders');
 
-    console.log(items);
-
     const formatDate = (timestamp) => {
         if (timestamp && timestamp.toDate) {
             const fecha = timestamp.toDate();
@@ -39,9 +37,9 @@ export const Pedidos = () => {
                             </p>
                             <h3>PRODUCTOS:</h3>
                             <ul className={styles.productosLista}>
-                                {item.productos.map((producto) => (
-                                    <li key={producto.product.ID}>
-                                        {producto.product.nombre} - Cantidad: {producto.quantity}
+                                {item.productos.map((producto, index) => (
+                                    <li key={index}>
+                                        {producto.categoria} - {producto.nombre} - {producto.cantidad} x {producto.precio}
                                     </li>
                                 ))}
                             </ul>

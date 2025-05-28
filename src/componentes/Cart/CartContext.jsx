@@ -53,7 +53,6 @@ const CartProvider = ({ children }) => {
         }, 0);
     }
 
-    // Formatear el precio a pesos argentinos
     const formatAsPesoArgentino = (amount) => {
         return new Intl.NumberFormat('es-AR', {
             style: 'currency',

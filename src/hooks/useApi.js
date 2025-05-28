@@ -22,7 +22,7 @@ export function useApiMenu(data) {
     }, []);
 
     return { items, loading };
-} 
+}
 
 export function useApiList(categoria) {
     const { items, setItems, loading, setLoading } = useApiState();
@@ -51,10 +51,18 @@ export function useApiDetail(ID) {
         const menuCollection = collection(db, 'menu');
         getDocs(menuCollection).then((response) => {
             const responseMapped = response.docs.map((doc) => ({ ...doc.data() }));
-            const plato = responseMapped
-                .flatMap(item => item.platos)
-                .find(plato => plato.ID === ID);
-            setItems(plato);
+            let platoEncontrado = null;
+            for (const item of responseMapped) {
+                const plato = item.platos.find(p => p.ID === ID);
+                if (plato) {
+                    platoEncontrado = {
+                        ...plato,
+                        categoria: item.tipo,
+                    };
+                    break;
+                }
+            }
+            setItems(platoEncontrado);
         }).finally(() => {
             setLoading(false);
             window.scrollTo({

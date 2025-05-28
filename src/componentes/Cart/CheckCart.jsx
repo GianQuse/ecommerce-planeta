@@ -9,7 +9,7 @@ import withReactContent from 'sweetalert2-react-content'
 export const CheckCart = () => {
     const navigate = useNavigate();
     const MySwal = withReactContent(Swal)
-    const { totalPrice, cart, clearCart } = useContext(cartContext);
+    const { totalPrice, cart, clearCart, formatAsPesoArgentino } = useContext(cartContext);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -19,6 +19,13 @@ export const CheckCart = () => {
         direccion: "",
         telefono: "",
     });
+
+    const productosFiltrados = cart.map(producto => ({
+        categoria: producto.product.categoria,
+        nombre: producto.product.nombre,
+        cantidad: producto.quantity,
+        precio: formatAsPesoArgentino(producto.product.precio * producto.quantity),
+    }));
 
     function onChange(e) {
         setValues({ ...values, [e.target.name]: e.target.value, });
@@ -34,9 +41,10 @@ export const CheckCart = () => {
                 direccion: values.direccion.toUpperCase(),
                 telefono: values.telefono.toUpperCase(),
             },
+            productos: productosFiltrados,
             total: totalPrice(),
-            productos: cart,
             fecha: serverTimestamp(),
+            estado: "Generado",
         };
 
         addDoc(collectionRef, orderData).then((response) => {
