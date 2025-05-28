@@ -1,10 +1,9 @@
 import { useApiMenu } from "../../hooks/useApi";
+import { CheckEstados } from "./CheckEstados";
 import styles from './Pedidos.module.css';
 
 export const Pedidos = () => {
     const { items, loading } = useApiMenu('orders');
-
-    console.log(items)
 
     const formatDate = (timestamp) => {
         if (timestamp && timestamp.toDate) {
@@ -39,7 +38,7 @@ export const Pedidos = () => {
                 <div className={styles.pedidosGrid}>
                     {items.map((item) => (
                         <div key={item.id} className={styles.pedidoItem}>
-                            <h3>DATOS:</h3>
+                            <h3 className={styles.subtitulo}>DATOS:</h3>
                             <p><strong>Nombre:</strong> {item.comprador.nombre}</p>
                             <p><strong>Apellido:</strong> {item.comprador.apellido}</p>
                             <p><strong>Dirección:</strong> {item.comprador.direccion}</p>
@@ -48,20 +47,24 @@ export const Pedidos = () => {
                             <p className={styles.total}>
                                 <strong>Total:</strong> <span className={styles.totalNumber}>${item.total}</span>
                             </p>
-                            <h3>PRODUCTOS:</h3>
-                            {Object.entries(agruparPorCategoria(item.productos)).map(([categoria, items]) => (
-                                <div key={categoria}>
-                                    <h2>{categoria}</h2>
-                                    {items.map((producto, index) => (
-                                        <p key={index}>{producto.nombre}</p>
-                                    ))}
+                            <h3 className={styles.subtitulo}>PRODUCTOS:</h3>
+                            {Object.entries(agruparPorCategoria(item.productos)).map(([categoria, productos]) => (
+                                <div key={categoria} className={styles.categoriaContainer}>
+                                    <h4 className={styles.categoriaTitulo}>{categoria}</h4>
+                                    <ul className={styles.productosLista}>
+                                        {productos.map((producto, index) => (
+                                            <li key={index}>
+                                                <strong>{producto.nombre} x {producto.cantidad}</strong> <span className={styles.precio}> {producto.precio}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
                             ))}
+                            <CheckEstados estado={item.estado} />
                         </div>
                     ))}
                 </div>
             )}
         </div>
-
     );
 };

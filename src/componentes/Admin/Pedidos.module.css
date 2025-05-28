@@ -1,5 +1,5 @@
 .pedidosContainer {
-    max-width: 1200px;
+    max-width: 1000px;
     padding: 1rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
@@ -7,40 +7,44 @@
 
 .titulo {
     text-align: center;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.8rem; /* Reducido */
+    margin-bottom: 1.2rem; /* Reducido */
     color: #1f2937;
+}
+
+.subtitulo {
+    font-size: 1.1rem; /* Reducido */
+    color: #1f2937;
+    margin-top: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.2rem; /* Reducido */
 }
 
 .loading,
 .noPedidos {
     text-align: center;
-    font-size: 1.2rem;
-    margin-top: 2rem;
+    font-size: 1.1rem; /* Reducido */
+    margin-top: 1.5rem; /* Reducido */
     color: #6b7280;
 }
 
 .pedidosGrid {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: 1.2rem; /* Reducido */
     justify-content: center;
 }
 
 .pedidoItem {
     background-color: #f9fafb;
     border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease;
-    flex: 1 1 calc(50% - 1.5rem); /* 2 por fila con espacio entre ellos */
-    max-width: calc(50% - 1.5rem);
+    border-radius: 10px; /* Reducido */
+    padding: 1.2rem; /* Reducido */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05); /* Reducido */
+    transition: none; /* Eliminado el hover */
+    flex: 1 1 calc(50% - 1.2rem); /* Ajustado para que queden más comprimidos */
+    max-width: calc(50% - 1.2rem);
     box-sizing: border-box;
-}
-
-.pedidoItem:hover {
-    transform: scale(1.01);
 }
 
 @media (max-width: 480px) {
@@ -50,35 +54,48 @@
     }
 }
 
-.pedidoItem h3 {
-    margin-top: 1rem;
-    font-size: 1.2rem;
-    color: #111827;
-    border-bottom: 1px solid #d1d5db;
-    padding-bottom: 0.3rem;
-}
-
 .pedidoItem p {
-    margin: 0.3rem 0;
-    line-height: 1.5;
+    margin: 0.2rem 0; /* Reducido */
+    line-height: 1.4; /* Reducido */
+    font-size: 0.95rem; /* Reducido */
+    color: #374151; /* Mismo color que los datos */
 }
 
 .productosLista {
     margin-top: 0.5rem;
     padding-left: 1.2rem;
     list-style-type: disc;
+    color: #374151; /* Color igual que los datos */
 }
 
 .productosLista li {
-    margin: 0.2rem 0;
-    color: #374151;
+    margin: 0.1rem 0; /* Reducido */
+    font-size: 0.95rem; /* Reducido */
+    color: #374151; /* Mismo color que los datos */
 }
 
 .total {
-    font-size: 1.3rem;
+    font-size: 1.2rem; /* Reducido */
+    margin-top: 0.8rem; /* Reducido */
+    color: #374151; /* Mismo color que los datos */
 }
 
 .totalNumber {
     color: #10b981;
     font-weight: bold;
+}
+
+.categoriaContainer {
+    margin-top: 5px;
+}
+
+.categoriaTitulo {
+    font-size: 1.2rem; /* Reducido */
+    color: #1f2937; /* Color igual que los datos */
+}
+
+.precio {
+    font-weight: bold;
+    color: #10b981;
+    font-size: 0.8rem;
 }

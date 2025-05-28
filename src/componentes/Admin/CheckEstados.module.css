@@ -1,0 +1,65 @@
+.estadoContainer {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-top: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.estadoContainer h3 {
+    font-size: 1.2rem;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.3rem;
+}
+
+.estadoContainer p {
+    font-size: 1rem;
+    color: #374151;
+    margin-bottom: 1rem;
+}
+
+.estadoContainer label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    color: #111827;
+}
+
+.estadoContainer input[type="checkbox"] {
+    margin-right: 0.8rem; /* Espacio más grande entre checkbox y texto */
+    width: 18px;
+    height: 18px;
+    accent-color: #10b981; /* Color verde moderno para los checkboxes */
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s ease;
+}
+
+.estadoContainer input[type="checkbox"]:hover {
+    transform: scale(1.05);
+}
+
+.estadoContainer button {
+    background-color: #10b981;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.estadoContainer button:hover {
+    background-color: #059669;
+}
+
+.estadoContainer button:focus {
+    outline: none;
+}
