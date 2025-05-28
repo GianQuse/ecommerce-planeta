@@ -4,6 +4,8 @@ import styles from './Pedidos.module.css';
 export const Pedidos = () => {
     const { items, loading } = useApiMenu('orders');
 
+    console.log(items)
+
     const formatDate = (timestamp) => {
         if (timestamp && timestamp.toDate) {
             const fecha = timestamp.toDate();
@@ -12,6 +14,17 @@ export const Pedidos = () => {
         }
         return 'Fecha no disponible';
     };
+
+    function agruparPorCategoria(productos) {
+        return productos.reduce((acumulador, producto) => {
+            const { categoria } = producto;
+            if (!acumulador[categoria]) {
+                acumulador[categoria] = [];
+            }
+            acumulador[categoria].push(producto);
+            return acumulador;
+        }, {});
+    }
 
     if (items.length === 0 && !loading) {
         return <p className={styles.noPedidos}>No hay pedidos disponibles.</p>;
@@ -36,13 +49,14 @@ export const Pedidos = () => {
                                 <strong>Total:</strong> <span className={styles.totalNumber}>${item.total}</span>
                             </p>
                             <h3>PRODUCTOS:</h3>
-                            <ul className={styles.productosLista}>
-                                {item.productos.map((producto, index) => (
-                                    <li key={index}>
-                                        {producto.categoria} - {producto.nombre} - {producto.cantidad} x {producto.precio}
-                                    </li>
-                                ))}
-                            </ul>
+                            {Object.entries(agruparPorCategoria(item.productos)).map(([categoria, items]) => (
+                                <div key={categoria}>
+                                    <h2>{categoria}</h2>
+                                    {items.map((producto, index) => (
+                                        <p key={index}>{producto.nombre}</p>
+                                    ))}
+                                </div>
+                            ))}
                         </div>
                     ))}
                 </div>
