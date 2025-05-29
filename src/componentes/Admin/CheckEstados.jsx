@@ -11,44 +11,105 @@ export const CheckEstados = ({ estado }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Nuevo estado seleccionado:', selectedEstado);
+        // Aquí podrías implementar la actualización en la base de datos
     };
 
     const renderRadios = () => {
         switch (estado.toUpperCase()) {
             case 'GENERADO':
-                return ['EN COCINA', 'CANCELADO'];
+                return (
+                    <>
+                        <label>
+                            <input
+                                type="radio"
+                                name="estado"
+                                value="EN COCINA"
+                                checked={selectedEstado === 'EN COCINA'}
+                                onChange={handleRadioChange}
+                            />
+                            En cocina
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                name="estado"
+                                value="CANCELADO"
+                                checked={selectedEstado === 'CANCELADO'}
+                                onChange={handleRadioChange}
+                            />
+                            Cancelado
+                        </label>
+                    </>
+                );
             case 'EN COCINA':
-                return ['EN CAMINO', 'CANCELADO'];
+                return (
+                    <>
+                        <label>
+                            <input
+                                type="radio"
+                                name="estado"
+                                value="EN CAMINO"
+                                checked={selectedEstado === 'EN CAMINO'}
+                                onChange={handleRadioChange}
+                            />
+                            En camino
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                name="estado"
+                                value="CANCELADO"
+                                checked={selectedEstado === 'CANCELADO'}
+                                onChange={handleRadioChange}
+                            />
+                            Cancelado
+                        </label>
+                    </>
+                );
             case 'EN CAMINO':
-                return ['ENTREGADO', 'CANCELADO'];
+                return (
+                    <>
+                        <label>
+                            <input
+                                type="radio"
+                                name="estado"
+                                value="ENTREGADO"
+                                checked={selectedEstado === 'ENTREGADO'}
+                                onChange={handleRadioChange}
+                            />
+                            Entregado
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                name="estado"
+                                value="CANCELADO"
+                                checked={selectedEstado === 'CANCELADO'}
+                                onChange={handleRadioChange}
+                            />
+                            Cancelado
+                        </label>
+                    </>
+                );
             default:
-                return [];
+                return null;
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className={styles.estado}>
-            <span className={styles.estadoTitulo}>Estado del Pedido:</span>
-            <span className={`${styles.estadoActual} ${styles[estado.toUpperCase().replace(" ", "_")]}`}>
-                {estado}
-            </span>
-            <div className={styles.estadoRadios}>
-                {renderRadios().map((option) => (
-                    <label key={option}>
-                        <input
-                            type="radio"
-                            name="estado"
-                            value={option}
-                            checked={selectedEstado === option}
-                            onChange={handleRadioChange}
-                        />
-                        {option}
-                    </label>
-                ))}
-            </div>
-            <button type="submit" className={styles.estadoBoton} disabled={!selectedEstado}>
-                CAMBIAR ESTADO
-            </button>
-        </form>
+        <div className={styles.estado}>
+            <form onSubmit={handleSubmit} className={styles.estadoForm}>
+                <span className={styles.estadoTitulo}>Estado del Pedido:</span>
+                <span className={`${styles.estadoActual} ${styles[estado.toUpperCase().replace(" ", "_")]}`}>
+                    {estado}
+                </span>
+                <div className={styles.radioGroup}>
+                    {renderRadios()}
+                </div>
+                <button type="submit" className={styles.estadoBoton} disabled={!selectedEstado}>
+                    CAMBIAR ESTADO
+                </button>
+            </form>
+        </div>
     );
 };

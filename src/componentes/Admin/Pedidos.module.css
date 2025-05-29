@@ -1,109 +1,151 @@
+ul {
+    list-style-position: inside;
+}
+
+/* Título principal */
+.titulo {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #1a202c;
+}
+
+/* Contenedor general para cada pedido */
+.pedidoCard {
+    border: 1px solid #e2e8f0;
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    position: relative;
+    /* necesario para ::after */
+}
+
+/* Grid interno de cada pedido */
 .container {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    grid-template-areas:
+        "datos productos"
+        "estado estado";
+    position: relative;
 }
 
-@media (min-width: 768px) {
-    .container {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas:
-            "datos productos"
-            "estado estado";
-    }
+/* Línea vertical entre datos y productos */
+.container::after {
+    content: "";
+    position: absolute;
+    top: 5%;
+    bottom: 30%;
+    left: 50%;
+    width: 1px;
+    background-color: #cbd5e0;
+    transform: translateX(-50%);
 }
 
+/* Bloques sin fondo ni bordes (heredan el estilo de .pedidoCard) */
 .datos {
     grid-area: datos;
-    background-color: #f9fafb;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    color: #111;
 }
 
 .productos {
     grid-area: productos;
-    background-color: #f9fafb;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    color: #111;
 }
 
-.datos h3,
-.productos h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #1a202c;
-}
-
-.datos p,
-.productos p,
-.productos li {
-    font-size: 0.95rem;
-    color: #1a202c;
-    margin-bottom: 0.25rem;
-}
-
-.productos h4 {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-top: 0.75rem;
-    color: #1a202c;
-}
-
-.productos ul {
-    padding-left: 1.25rem;
-}
-
+/* Estilo para el bloque de estado */
 .estado {
     grid-area: estado;
-    padding: 1rem 0;
-    border-top: 1px solid #e2e8f0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    border-top: 1px solid #cbd5e0;
+    padding-top: 1rem;
 }
 
-@media (min-width: 640px) {
-    .estado {
+/* Formulario de estado en fila en pantallas grandes */
+.estadoForm {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Grupo de radios en línea */
+.radioGroup {
+    display: flex;
+    gap: 1rem;
+}
+
+.radioGroup label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+/* Responsive: en móviles se apilan los elementos */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "datos"
+            "productos"
+            "estado";
+    }
+
+    .container::after {
+        display: none;
+        /* Ocultamos la línea vertical en móviles */
+    }
+
+    .estadoForm {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .radioGroup {
         flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
+        flex-wrap: wrap;
     }
 }
 
+/* Estilos para el componente CheckEstados */
 .estadoTitulo {
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: #1a202c;
     white-space: nowrap;
 }
 
 .estadoActual {
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-size: 1.2rem;
     white-space: nowrap;
 }
 
-.estadoRadios {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+/* Colores según el estado */
+.estadoActual.GENERADO,
+.estadoActual.EN_COCINA {
+    color: #d97706;
+    font-weight: bold;
 }
 
-.estadoRadios label {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    font-size: 0.95rem;
-    color: #1a202c;
-    font-weight: 500;
-    white-space: nowrap;
+.estadoActual.EN_CAMINO {
+    color: #2563eb;
+    font-weight: bold;
 }
 
+.estadoActual.ENTREGADO {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+.estadoActual.CANCELADO {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+/* Botón de cambiar estado */
 .estadoBoton {
     background-color: #3182ce;
     color: white;
@@ -124,34 +166,4 @@
 .estadoBoton:disabled {
     background-color: #cbd5e0;
     cursor: not-allowed;
-}
-
-.titulo {
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    color: #1a202c;
-}
-
-/* Colores según estado */
-.estadoActual.GENERADO,
-.estadoActual.EN_COCINA {
-    color: #d97706; /* amarillo oscuro */
-    font-weight: bold;
-}
-
-.estadoActual.EN_CAMINO {
-    color: #2563eb; /* azul */
-    font-weight: bold;
-}
-
-.estadoActual.ENTREGADO {
-    color: #16a34a; /* verde */
-    font-weight: bold;
-}
-
-.estadoActual.CANCELADO {
-    color: #dc2626; /* rojo */
-    font-weight: bold;
 }
