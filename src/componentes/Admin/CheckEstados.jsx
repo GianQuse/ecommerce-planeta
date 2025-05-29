@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from './CheckEstados.module.css';
+import styles from './Pedidos.module.css';
 
 export const CheckEstados = ({ estado }) => {
 
@@ -89,7 +89,7 @@ export const CheckEstados = ({ estado }) => {
     };
 
     return (
-        <div className={styles.estadoContainer}>
+        <div>
             <form onSubmit={handleSubmit}>
                 <h3>Estado del Pedido</h3>
                 <p>{estado}</p>
