@@ -14,7 +14,7 @@ export const Pedidos = () => {
         return 'Fecha no disponible';
     };
 
-    function agruparPorCategoria(productos) {
+    const agruparPorCategoria = (productos) => {
         return productos.reduce((acumulador, producto) => {
             const { categoria } = producto;
             if (!acumulador[categoria]) {
@@ -23,7 +23,7 @@ export const Pedidos = () => {
             acumulador[categoria].push(producto);
             return acumulador;
         }, {});
-    }
+    };
 
     if (items.length === 0 && !loading) {
         return <p>No hay pedidos disponibles.</p>;
@@ -31,7 +31,7 @@ export const Pedidos = () => {
 
     return (
         <div>
-            <h2>Pedidos</h2>
+            <h2 className={styles.titulo}>Pedidos</h2>
             {loading ? (
                 <p>Cargando...</p>
             ) : (

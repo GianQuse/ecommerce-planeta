@@ -1,24 +1,157 @@
 .container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1.7fr 0.3fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-        "datos productos"
-        "estado estado";
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+@media (min-width: 768px) {
+    .container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "datos productos"
+            "estado estado";
+    }
 }
 
 .datos {
     grid-area: datos;
+    background-color: #f9fafb;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .productos {
     grid-area: productos;
+    background-color: #f9fafb;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.datos h3,
+.productos h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #1a202c;
+}
+
+.datos p,
+.productos p,
+.productos li {
+    font-size: 0.95rem;
+    color: #1a202c;
+    margin-bottom: 0.25rem;
+}
+
+.productos h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 0.75rem;
+    color: #1a202c;
+}
+
+.productos ul {
+    padding-left: 1.25rem;
 }
 
 .estado {
     grid-area: estado;
-    padding: 1rem;
-    border-top: 1px solid #ccc;
+    padding: 1rem 0;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+    .estado {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+}
+
+.estadoTitulo {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a202c;
+    white-space: nowrap;
+}
+
+.estadoActual {
+    font-size: 0.95rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.estadoRadios {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.estadoRadios label {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.95rem;
+    color: #1a202c;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.estadoBoton {
+    background-color: #3182ce;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease-in-out;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.estadoBoton:hover {
+    background-color: #2b6cb0;
+}
+
+.estadoBoton:disabled {
+    background-color: #cbd5e0;
+    cursor: not-allowed;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #1a202c;
+}
+
+/* Colores según estado */
+.estadoActual.GENERADO,
+.estadoActual.EN_COCINA {
+    color: #d97706; /* amarillo oscuro */
+    font-weight: bold;
+}
+
+.estadoActual.EN_CAMINO {
+    color: #2563eb; /* azul */
+    font-weight: bold;
+}
+
+.estadoActual.ENTREGADO {
+    color: #16a34a; /* verde */
+    font-weight: bold;
+}
+
+.estadoActual.CANCELADO {
+    color: #dc2626; /* rojo */
+    font-weight: bold;
 }
