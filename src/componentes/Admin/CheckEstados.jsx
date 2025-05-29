@@ -2,59 +2,64 @@ import { useState } from 'react';
 import styles from './Pedidos.module.css';
 
 export const CheckEstados = ({ estado }) => {
+    const [selectedEstado, setSelectedEstado] = useState('');
 
-    const [checkboxState, setCheckboxState] = useState({
-        enCocina: false,
-        enCamino: false,
-        entregado: false,
-        cancelado: false,
-    });
-
-    const handleCheckboxChange = (e) => {
-        const { name, checked } = e.target;
-        setCheckboxState((prevState) => ({
-            ...prevState,
-            [name]: checked,
-        }));
+    const handleRadioChange = (e) => {
+        setSelectedEstado(e.target.value);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Estado del pedido:', checkboxState);
+        console.log('Nuevo estado seleccionado:', selectedEstado);
     };
 
-    const renderCheckboxes = () => {
+    const renderRadios = () => {
         switch (estado.toUpperCase()) {
             case 'GENERADO':
                 return (
-                    <label>
-                        <input
-                            type="checkbox"
-                            name="enCocina"
-                            checked={checkboxState.enCocina}
-                            onChange={handleCheckboxChange}
-                        />
-                        En cocina
-                    </label>
+                    <>
+                        <label>
+                            <input
+                                type="radio"
+                                name="estado"
+                                value="EN COCINA"
+                                checked={selectedEstado === 'EN COCINA'}
+                                onChange={handleRadioChange}
+                            />
+                            En cocina
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                name="estado"
+                                value="CANCELADO"
+                                checked={selectedEstado === 'CANCELADO'}
+                                onChange={handleRadioChange}
+                            />
+                            Cancelado
+                        </label>
+                    </>
                 );
             case 'EN COCINA':
                 return (
                     <>
                         <label>
                             <input
-                                type="checkbox"
-                                name="enCamino"
-                                checked={checkboxState.enCamino}
-                                onChange={handleCheckboxChange}
+                                type="radio"
+                                name="estado"
+                                value="EN CAMINO"
+                                checked={selectedEstado === 'EN CAMINO'}
+                                onChange={handleRadioChange}
                             />
                             En camino
                         </label>
                         <label>
                             <input
-                                type="checkbox"
-                                name="cancelado"
-                                checked={checkboxState.cancelado}
-                                onChange={handleCheckboxChange}
+                                type="radio"
+                                name="estado"
+                                value="CANCELADO"
+                                checked={selectedEstado === 'CANCELADO'}
+                                onChange={handleRadioChange}
                             />
                             Cancelado
                         </label>
@@ -65,19 +70,21 @@ export const CheckEstados = ({ estado }) => {
                     <>
                         <label>
                             <input
-                                type="checkbox"
-                                name="entregado"
-                                checked={checkboxState.entregado}
-                                onChange={handleCheckboxChange}
+                                type="radio"
+                                name="estado"
+                                value="ENTREGADO"
+                                checked={selectedEstado === 'ENTREGADO'}
+                                onChange={handleRadioChange}
                             />
                             Entregado
                         </label>
                         <label>
                             <input
-                                type="checkbox"
-                                name="cancelado"
-                                checked={checkboxState.cancelado}
-                                onChange={handleCheckboxChange}
+                                type="radio"
+                                name="estado"
+                                value="CANCELADO"
+                                checked={selectedEstado === 'CANCELADO'}
+                                onChange={handleRadioChange}
                             />
                             Cancelado
                         </label>
@@ -93,8 +100,8 @@ export const CheckEstados = ({ estado }) => {
             <form onSubmit={handleSubmit}>
                 <h3>Estado del Pedido</h3>
                 <p>{estado}</p>
-                {renderCheckboxes()}
-                <button type="submit">CAMBIAR ESTADO</button>
+                {renderRadios()}
+                <button type="submit" disabled={!selectedEstado}>CAMBIAR ESTADO</button>
             </form>
         </div>
     );
