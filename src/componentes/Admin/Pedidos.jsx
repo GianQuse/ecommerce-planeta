@@ -35,18 +35,18 @@ export const Pedidos = () => {
             {loading ? (
                 <p>Cargando...</p>
             ) : (
-                <div>
-                    {items.map((item) => (
-                        <div key={item.id}>
+                items.map((item) => (
+                    <div key={item.id} className={styles.container}>
+                        <div className={styles.datos}>
                             <h3>DATOS:</h3>
                             <p><strong>Nombre:</strong> {item.comprador.nombre}</p>
                             <p><strong>Apellido:</strong> {item.comprador.apellido}</p>
                             <p><strong>Dirección:</strong> {item.comprador.direccion}</p>
                             <p><strong>Teléfono:</strong> {item.comprador.telefono}</p>
                             <p><strong>Fecha:</strong> {formatDate(item.fecha)}</p>
-                            <p>
-                                <strong>Total:</strong> <span>${item.total}</span>
-                            </p>
+                            <p><strong>Total:</strong> ${item.total}</p>
+                        </div>
+                        <div className={styles.productos}>
                             <h3>PRODUCTOS:</h3>
                             {Object.entries(agruparPorCategoria(item.productos)).map(([categoria, productos]) => (
                                 <div key={categoria}>
@@ -60,10 +60,10 @@ export const Pedidos = () => {
                                     </ul>
                                 </div>
                             ))}
-                            <CheckEstados estado={item.estado} />
                         </div>
-                    ))}
-                </div>
+                        <CheckEstados estado={item.estado} />
+                    </div>
+                ))
             )}
         </div>
     );

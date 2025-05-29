@@ -96,7 +96,7 @@ export const CheckEstados = ({ estado }) => {
     };
 
     return (
-        <div>
+        <div className={styles.estado}>
             <form onSubmit={handleSubmit}>
                 <h3>Estado del Pedido</h3>
                 <p>{estado}</p>

@@ -1,0 +1,24 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1.7fr 0.3fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "datos productos"
+        "estado estado";
+}
+
+.datos {
+    grid-area: datos;
+}
+
+.productos {
+    grid-area: productos;
+}
+
+.estado {
+    grid-area: estado;
+    padding: 1rem;
+    border-top: 1px solid #ccc;
+}
