@@ -1,9 +1,9 @@
-import { useApiMenu } from "../../hooks/useApi";
+import { useApiOrders } from "../../hooks/useApi";
 import { CheckEstados } from "./CheckEstados";
 import styles from './Pedidos.module.css';
 
 export const Pedidos = () => {
-    const { items, loading } = useApiMenu('orders');
+    const { items, loading } = useApiOrders();
 
     const formatDate = (timestamp) => {
         if (timestamp && timestamp.toDate) {
@@ -62,7 +62,7 @@ export const Pedidos = () => {
                                     </div>
                                 ))}
                             </div>
-                            <CheckEstados estado={item.estado} />
+                            <CheckEstados estado={item.estado} id={item.id} />
                         </div>
                     </div>
                 ))

@@ -1,17 +1,28 @@
 import { useState } from 'react';
+import { doc, getFirestore, updateDoc } from "firebase/firestore";
 import styles from './Pedidos.module.css';
 
-export const CheckEstados = ({ estado }) => {
+export const CheckEstados = ({ estado, id }) => {
     const [selectedEstado, setSelectedEstado] = useState('');
 
     const handleRadioChange = (e) => {
         setSelectedEstado(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Nuevo estado seleccionado:', selectedEstado);
-        // Aquí podrías implementar la actualización en la base de datos
+
+        try {
+            const db = getFirestore();
+            const docRef = doc(db, "orders", id);
+
+            await updateDoc(docRef, {
+                estado: selectedEstado,
+            });
+
+        } catch (error) {
+            alert("Hubo un error al actualizar el estado");
+        }
     };
 
     const renderRadios = () => {
@@ -20,23 +31,11 @@ export const CheckEstados = ({ estado }) => {
                 return (
                     <>
                         <label>
-                            <input
-                                type="radio"
-                                name="estado"
-                                value="EN COCINA"
-                                checked={selectedEstado === 'EN COCINA'}
-                                onChange={handleRadioChange}
-                            />
+                            <input type="radio" name="estado" value="EN COCINA" checked={selectedEstado === 'EN COCINA'} onChange={handleRadioChange} />
                             En cocina
                         </label>
                         <label>
-                            <input
-                                type="radio"
-                                name="estado"
-                                value="CANCELADO"
-                                checked={selectedEstado === 'CANCELADO'}
-                                onChange={handleRadioChange}
-                            />
+                            <input type="radio" name="estado" value="CANCELADO" checked={selectedEstado === 'CANCELADO'} onChange={handleRadioChange} />
                             Cancelado
                         </label>
                     </>
@@ -45,23 +44,11 @@ export const CheckEstados = ({ estado }) => {
                 return (
                     <>
                         <label>
-                            <input
-                                type="radio"
-                                name="estado"
-                                value="EN CAMINO"
-                                checked={selectedEstado === 'EN CAMINO'}
-                                onChange={handleRadioChange}
-                            />
+                            <input type="radio" name="estado" value="EN CAMINO" checked={selectedEstado === 'EN CAMINO'} onChange={handleRadioChange} />
                             En camino
                         </label>
                         <label>
-                            <input
-                                type="radio"
-                                name="estado"
-                                value="CANCELADO"
-                                checked={selectedEstado === 'CANCELADO'}
-                                onChange={handleRadioChange}
-                            />
+                            <input type="radio" name="estado" value="CANCELADO" checked={selectedEstado === 'CANCELADO'} onChange={handleRadioChange} />
                             Cancelado
                         </label>
                     </>
@@ -70,23 +57,11 @@ export const CheckEstados = ({ estado }) => {
                 return (
                     <>
                         <label>
-                            <input
-                                type="radio"
-                                name="estado"
-                                value="ENTREGADO"
-                                checked={selectedEstado === 'ENTREGADO'}
-                                onChange={handleRadioChange}
-                            />
+                            <input type="radio" name="estado" value="ENTREGADO" checked={selectedEstado === 'ENTREGADO'} onChange={handleRadioChange} />
                             Entregado
                         </label>
                         <label>
-                            <input
-                                type="radio"
-                                name="estado"
-                                value="CANCELADO"
-                                checked={selectedEstado === 'CANCELADO'}
-                                onChange={handleRadioChange}
-                            />
+                            <input type="radio" name="estado" value="CANCELADO" checked={selectedEstado === 'CANCELADO'} onChange={handleRadioChange} />
                             Cancelado
                         </label>
                     </>

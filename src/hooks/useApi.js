@@ -1,4 +1,4 @@
-import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
+import { collection, getDocs, getFirestore, query, where, onSnapshot, orderBy } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
 export function useApiState() {
@@ -7,12 +7,12 @@ export function useApiState() {
     return { items, setItems, loading, setLoading };
 }
 
-export function useApiMenu(data) {
+export function useApiMenu() {
     const { items, setItems, loading, setLoading } = useApiState();
 
     useEffect(() => {
         const db = getFirestore()
-        const menuCollection = collection(db, `${data}`);
+        const menuCollection = collection(db, 'menu');
         getDocs(menuCollection).then((response) => {
             const responseMapped = response.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
             setItems(responseMapped);
@@ -70,6 +70,30 @@ export function useApiDetail(ID) {
                 behavior: 'smooth'
             });
         });
+    }, []);
+
+    return { items, loading };
+}
+
+export function useApiOrders() {
+    const { items, setItems, loading, setLoading } = useApiState();
+
+    useEffect(() => {
+        const db = getFirestore();
+        const ordersCollection = collection(db, 'orders');
+
+        const orderedQuery = query(ordersCollection, orderBy('fecha', 'desc'));
+
+        const unsubscribe = onSnapshot(orderedQuery, (snapshot) => {
+            const responseMapped = snapshot.docs.map((doc) => ({
+                ...doc.data(),
+                id: doc.id,
+            }));
+            setItems(responseMapped);
+            setLoading(false);
+        });
+
+        return () => unsubscribe();
     }, []);
 
     return { items, loading };
