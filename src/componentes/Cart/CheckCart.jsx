@@ -44,7 +44,7 @@ export const CheckCart = () => {
             productos: productosFiltrados,
             total: totalPrice(),
             fecha: serverTimestamp(),
-            estado: "Generado",
+            estado: "GENERADO",
         };
 
         addDoc(collectionRef, orderData).then((response) => {
