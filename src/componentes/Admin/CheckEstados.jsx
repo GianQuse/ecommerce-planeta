@@ -18,16 +18,22 @@ export const CheckEstados = ({ estado, id }) => {
             const docRef = doc(db, "orders", id);
 
             if (selectedEstado === 'CANCELADO') {
-                const { value: password } = await Swal.fire({
+                const { isConfirmed } = await Swal.fire({
                     title: 'Confirmar acción',
-                    text: 'Ingrese su contraseña para continuar',
+                    text: 'Ingrese 1234 para confirmar cambios',
                     input: 'password',
-                    inputLabel: 'Contraseña',
-                    inputPlaceholder: 'Escribe tu contraseña',
+                    inputPlaceholder: 'Escribe la contraseña',
                     showCancelButton: true,
                     confirmButtonText: 'Confirmar',
+                    inputValidator: (value) => {
+                        if (!value) {
+                            return 'Por favor ingrese la contraseña';
+                        } else if (value !== "1234") {
+                            return 'Contraseña incorrecta';
+                        }
+                    }
                 });
-                if (!password || password !== "1234") {
+                if (!isConfirmed) {
                     setSelectedEstado('');
                     return;
                 }
