@@ -1,9 +1,11 @@
 import { useApiOrders } from "../../hooks/useApi";
 import { CheckEstados } from "./CheckEstados";
 import styles from './Pedidos.module.css';
+import { useState } from "react";
 
 export const Pedidos = () => {
     const { items, loading } = useApiOrders();
+    const [filtroEstado, setFiltroEstado] = useState("TODOS");
 
     const formatDate = (timestamp) => {
         if (timestamp && timestamp.toDate) {
@@ -25,17 +27,36 @@ export const Pedidos = () => {
         }, {});
     };
 
-    if (items.length === 0 && !loading) {
-        return <p>No hay pedidos disponibles.</p>;
+    const estadosDisponibles = ["TODOS", "GENERADO", "EN COCINA", "EN CAMINO", "ENTREGADO", "CANCELADO"];
+
+    const pedidosFiltrados = filtroEstado === "TODOS"
+        ? items
+        : items.filter(item => item.estado === filtroEstado);
+
+    if (loading) {
+        return <p>Cargando...</p>;
     }
 
     return (
         <div>
             <h2 className={styles.titulo}>Pedidos</h2>
-            {loading ? (
-                <p>Cargando...</p>
+
+            <div className={styles.navEstados}>
+                {estadosDisponibles.map((estado) => (
+                    <button
+                        key={estado}
+                        className={`${styles.estadoBotonNav} ${filtroEstado === estado ? styles.activo : ''}`}
+                        onClick={() => setFiltroEstado(estado)}
+                    >
+                        {estado}
+                    </button>
+                ))}
+            </div>
+
+            {pedidosFiltrados.length === 0 ? (
+                <p>No hay pedido {filtroEstado} disponible.</p>
             ) : (
-                items.map((item) => (
+                pedidosFiltrados.map((item) => (
                     <div key={item.id} className={styles.pedidoCard}>
                         <div className={styles.container}>
                             <div className={styles.datos}>
@@ -65,8 +86,7 @@ export const Pedidos = () => {
                             <CheckEstados estado={item.estado} id={item.id} />
                         </div>
                     </div>
-                ))
-            )}
+                )))}
         </div>
     );
 };

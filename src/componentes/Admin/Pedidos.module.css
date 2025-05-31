@@ -10,6 +10,37 @@ ul {
     color: #1a202c;
 }
 
+/* Botones de filtro tipo navbar */
+.navEstados {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.estadoBotonNav {
+    background-color: #e2e8f0;
+    color: #1a202c;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.estadoBotonNav:hover {
+    background-color: #cbd5e0;
+}
+
+.estadoBotonNav.activo {
+    background-color: #3182ce;
+    color: white;
+}
+
 /* Contenedor general para cada pedido */
 .pedidoCard {
     border: 1px solid #e2e8f0;
@@ -56,7 +87,8 @@ ul {
     color: #111;
 }
 
-.datos, .productos {
+.datos,
+.productos {
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
@@ -84,9 +116,9 @@ ul {
 }
 
 .radioGroup label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 
