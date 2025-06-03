@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { doc, getFirestore, updateDoc } from "firebase/firestore";
+import { doc, getFirestore, updateDoc, setDoc } from "firebase/firestore";
 import Swal from 'sweetalert2';
 import styles from './Pedidos.module.css';
 import { useApiDelivery } from '../../hooks/useApi';
 
-export const CheckEstados = ({ estado, id }) => {
+export const CheckEstados = ({ estado, id, delivery }) => {
 
     // CAMBIAR ESTADO DEL PEDIDO
     const [selectedEstado, setSelectedEstado] = useState('');
@@ -42,9 +42,16 @@ export const CheckEstados = ({ estado, id }) => {
                 }
             }
 
-            await updateDoc(docRef, {
-                estado: selectedEstado,
-            });
+            if (opcion) {
+                await setDoc(docRef, {
+                    estado: selectedEstado,
+                    delivery: opcion,
+                }, { merge: true });
+            } else {
+                await updateDoc(docRef, {
+                    estado: selectedEstado,
+                });
+            }
 
             setSelectedEstado('');
 
@@ -155,7 +162,7 @@ export const CheckEstados = ({ estado, id }) => {
                 <div className={styles.estadoTituloContainer}>
                     <span className={styles.estadoTitulo}>Estado del Pedido:</span>
                     <span className={`${styles.estadoActual} ${styles[estado.toUpperCase().replace(" ", "_")]}`}>
-                        {estado}
+                        {estado} {estado === 'EN CAMINO' ? `${delivery}` : ''}
                     </span>
                 </div>
                 <div className={styles.estadoRadiosContainer}>
