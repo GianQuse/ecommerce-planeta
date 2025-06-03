@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { doc, getFirestore, updateDoc } from "firebase/firestore";
 import Swal from 'sweetalert2';
 import styles from './Pedidos.module.css';
@@ -50,6 +50,34 @@ export const CheckEstados = ({ estado, id }) => {
         }
     };
 
+    // Estado para manejar la opción de delivery
+    const [opcion, setOpcion] = useState('');
+
+    const handleSelectChange = (e) => {
+        setOpcion(e.target.value);
+    };
+
+    useEffect(() => {
+        if (selectedEstado !== 'EN CAMINO') {
+            setOpcion('');
+        }
+    }, [selectedEstado]);
+
+    const renderDeliverySelect = () => {
+        if (selectedEstado === 'EN CAMINO') {
+            return (
+                <select value={opcion} onChange={handleSelectChange}>
+                    <option value="" disabled>-- Asigna un Delivery --</option>
+                    <option value="opcion1">Opción 1</option>
+                    <option value="opcion2">Opción 2</option>
+                    <option value="opcion3">Opción 3</option>
+                </select>
+            );
+        }
+
+        return null;
+    };
+
     const renderRadios = () => {
         switch (estado.toUpperCase()) {
             case 'GENERADO':
@@ -72,6 +100,7 @@ export const CheckEstados = ({ estado, id }) => {
                             <input type="radio" name="estado" value="EN CAMINO" checked={selectedEstado === 'EN CAMINO'} onChange={handleRadioChange} />
                             En camino
                         </label>
+                        {renderDeliverySelect()}
                         <label>
                             <input type="radio" name="estado" value="CANCELADO" checked={selectedEstado === 'CANCELADO'} onChange={handleRadioChange} />
                             Cancelado
@@ -96,6 +125,21 @@ export const CheckEstados = ({ estado, id }) => {
         }
     };
 
+    const renderButtons = () => {
+    if (estado === 'CANCELADO' || estado === 'ENTREGADO') return null;
+
+    return (
+        <>
+            <button type="submit" className={styles.estadoBoton} disabled={!selectedEstado}>
+                CAMBIAR ESTADO
+            </button>
+            <button type="button" className={styles.estadoBoton} disabled={!selectedEstado} onClick={() => setSelectedEstado('')}>
+                CANCELAR
+            </button>
+        </>
+    );
+};
+
     return (
         <div className={styles.estado}>
             <form onSubmit={handleSubmit} className={styles.estadoForm}>
@@ -106,9 +150,7 @@ export const CheckEstados = ({ estado, id }) => {
                 <div className={styles.radioGroup}>
                     {renderRadios()}
                 </div>
-                <button type="submit" className={styles.estadoBoton} disabled={!selectedEstado}>
-                    CAMBIAR ESTADO
-                </button>
+                {renderButtons()}
             </form>
         </div>
     );
