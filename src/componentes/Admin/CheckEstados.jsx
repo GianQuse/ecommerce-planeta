@@ -2,8 +2,11 @@ import { useState, useEffect } from 'react';
 import { doc, getFirestore, updateDoc } from "firebase/firestore";
 import Swal from 'sweetalert2';
 import styles from './Pedidos.module.css';
+import { useApiDelivery } from '../../hooks/useApi';
 
 export const CheckEstados = ({ estado, id }) => {
+
+    // CAMBIAR ESTADO DEL PEDIDO
     const [selectedEstado, setSelectedEstado] = useState('');
 
     const handleRadioChange = (e) => {
@@ -49,8 +52,10 @@ export const CheckEstados = ({ estado, id }) => {
             alert("Hubo un error al actualizar el estado");
         }
     };
+    // FIN CAMBIAR ESTADO DEL PEDIDO
 
-    // Estado para manejar la opción de delivery
+    // SELECT PARA ASIGNAR DELIVERY
+    const { items } = useApiDelivery();
     const [opcion, setOpcion] = useState('');
 
     const handleSelectChange = (e) => {
@@ -68,14 +73,24 @@ export const CheckEstados = ({ estado, id }) => {
             return (
                 <select value={opcion} onChange={handleSelectChange}>
                     <option value="" disabled>-- Asigna un Delivery --</option>
-                    <option value="opcion1">Opción 1</option>
-                    <option value="opcion2">Opción 2</option>
-                    <option value="opcion3">Opción 3</option>
+                    {items.map(item => (
+                        <option key={item.id} value={item.id}>{item.nombre} {item.apellido}</option>
+                    ))}
                 </select>
             );
         }
-
         return null;
+    };
+    // FIN SELECT PARA ASIGNAR DELIVERY
+
+    // RENDERIZAR RADIO BUTTONS
+    const renderRadioCancelado = () => {
+        return (
+            <label>
+                <input type="radio" name="estado" value="CANCELADO" checked={selectedEstado === 'CANCELADO'} onChange={handleRadioChange} />
+                Cancelado
+            </label>
+        );
     };
 
     const renderRadios = () => {
@@ -87,10 +102,7 @@ export const CheckEstados = ({ estado, id }) => {
                             <input type="radio" name="estado" value="EN COCINA" checked={selectedEstado === 'EN COCINA'} onChange={handleRadioChange} />
                             En cocina
                         </label>
-                        <label>
-                            <input type="radio" name="estado" value="CANCELADO" checked={selectedEstado === 'CANCELADO'} onChange={handleRadioChange} />
-                            Cancelado
-                        </label>
+                        {renderRadioCancelado()}
                     </>
                 );
             case 'EN COCINA':
@@ -101,10 +113,7 @@ export const CheckEstados = ({ estado, id }) => {
                             En camino
                         </label>
                         {renderDeliverySelect()}
-                        <label>
-                            <input type="radio" name="estado" value="CANCELADO" checked={selectedEstado === 'CANCELADO'} onChange={handleRadioChange} />
-                            Cancelado
-                        </label>
+                        {renderRadioCancelado()}
                     </>
                 );
             case 'EN CAMINO':
@@ -114,43 +123,47 @@ export const CheckEstados = ({ estado, id }) => {
                             <input type="radio" name="estado" value="ENTREGADO" checked={selectedEstado === 'ENTREGADO'} onChange={handleRadioChange} />
                             Entregado
                         </label>
-                        <label>
-                            <input type="radio" name="estado" value="CANCELADO" checked={selectedEstado === 'CANCELADO'} onChange={handleRadioChange} />
-                            Cancelado
-                        </label>
+                        {renderRadioCancelado()}
                     </>
                 );
             default:
                 return null;
         }
     };
+    // FIN RENDERIZAR RADIO BUTTONS
 
+    // RENDERIZAR BOTONES SEGÚN ESTADO
     const renderButtons = () => {
-    if (estado === 'CANCELADO' || estado === 'ENTREGADO') return null;
+        if (estado === 'CANCELADO' || estado === 'ENTREGADO') return null;
 
-    return (
-        <>
-            <button type="submit" className={styles.estadoBoton} disabled={!selectedEstado}>
-                CAMBIAR ESTADO
-            </button>
-            <button type="button" className={styles.estadoBoton} disabled={!selectedEstado} onClick={() => setSelectedEstado('')}>
-                CANCELAR
-            </button>
-        </>
-    );
-};
+        return (
+            <>
+                <button type="submit" className={styles.estadoBoton} disabled={!selectedEstado}>
+                    {selectedEstado === 'EN CAMINO' ? "CAMBIAR Y ASIGNAR" : "CAMBIAR"}
+                </button>
+                <button type="button" className={styles.estadoBoton} disabled={!selectedEstado} onClick={() => setSelectedEstado('')}>
+                    CANCELAR
+                </button>
+            </>
+        );
+    };
+    // FIN RENDERIZAR BOTONES SEGÚN ESTADO
 
     return (
         <div className={styles.estado}>
             <form onSubmit={handleSubmit} className={styles.estadoForm}>
-                <span className={styles.estadoTitulo}>Estado del Pedido:</span>
-                <span className={`${styles.estadoActual} ${styles[estado.toUpperCase().replace(" ", "_")]}`}>
-                    {estado}
-                </span>
-                <div className={styles.radioGroup}>
-                    {renderRadios()}
+                <div className={styles.estadoTituloContainer}>
+                    <span className={styles.estadoTitulo}>Estado del Pedido:</span>
+                    <span className={`${styles.estadoActual} ${styles[estado.toUpperCase().replace(" ", "_")]}`}>
+                        {estado}
+                    </span>
                 </div>
-                {renderButtons()}
+                <div className={styles.estadoRadiosContainer}>
+                    <div className={styles.radioGroup}>
+                        {renderRadios()}
+                    </div>
+                    {renderButtons()}
+                </div>
             </form>
         </div>
     );
