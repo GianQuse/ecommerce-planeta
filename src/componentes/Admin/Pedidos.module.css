@@ -105,7 +105,7 @@ ul {
 .estadoForm {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
 }
 
 .estadoTituloContainer {
@@ -152,12 +152,47 @@ ul {
 
     .estadoForm {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        width: 100%;
     }
 
-    .radioGroup {
-        flex-direction: row;
-        flex-wrap: wrap;
+    .estadoTituloContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .estadoTitulo {
+        font-size: 1.1rem;
+        /* Reducir tamaño de la fuente para móviles */
+    }
+
+    .estadoRadiosContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    /* Agrupar radios con etiquetas en móviles */
+    .radioGroup label {
+        display: flex;
+        align-items: flex-start;
+        /* Cambiar para alinearse al principio */
+    }
+
+    .estadoBoton {
+        width: 80%;
+        /* Asegura que el botón ocupe el 100% en móviles */
+    }
+
+    /* Reducir márgenes y paddings */
+    .estadoTitulo {
+        font-size: 1.1rem;
+    }
+
+    .estadoActual {
+        font-size: 1rem;
     }
 }
 

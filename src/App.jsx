@@ -12,6 +12,7 @@ import { createFirebaseApp } from './utils/configFirebase.js';
 import { CheckCart } from './componentes/Cart/CheckCart.jsx';
 import { DeliveryProvider } from './componentes/Admin/DeliveryContext.jsx';
 import { Pedidos } from './componentes/Admin/Pedidos.jsx';
+import { DeliveryUser } from './componentes/Delivery/DeliveryUser.jsx';
 import './style.css';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkcart" element={<CheckCart />} />
               <Route path="/admin" element={<Pedidos />} />
+              <Route path="/delivery" element={<DeliveryUser />} />
             </Routes>
             <FloatingCart />
             <Footer />

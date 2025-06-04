@@ -91,9 +91,7 @@ export const CheckEstados = ({ estado, id, delivery }) => {
 
     //Filtrar delivery asignado a un pedido
 
-    const filteredDelivery = !loading
-        ? items.filter(item => item.id === delivery)
-        : [];
+    const filteredDelivery = !loading ? items.filter(item => item.id === delivery) : [];
 
     //Fin filtrar delivery asignado a un pedido
 
