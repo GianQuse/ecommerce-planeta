@@ -98,19 +98,3 @@ export function useApiOrders() {
 
     return { items, loading };
 }
-
-export function useApiDelivery() {
-    const { items, setItems } = useApiState();
-
-    useEffect(() => {
-        const db = getFirestore();
-        const deliveryCollection = collection(db, 'delivery');
-
-        getDocs(deliveryCollection).then((response) => {
-            const responseMapped = response.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-            setItems(responseMapped);
-        })
-    }, []);
-
-    return { items };
-}

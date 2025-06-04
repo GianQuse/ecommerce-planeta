@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { doc, getFirestore, updateDoc, setDoc } from "firebase/firestore";
 import Swal from 'sweetalert2';
 import styles from './Pedidos.module.css';
-import { useApiDelivery } from '../../hooks/useApi';
+import { useDelivery } from './DeliveryContext';
 
 export const CheckEstados = ({ estado, id, delivery }) => {
 
@@ -62,7 +62,7 @@ export const CheckEstados = ({ estado, id, delivery }) => {
     // FIN CAMBIAR ESTADO DEL PEDIDO
 
     // SELECT PARA ASIGNAR DELIVERY
-    const { items } = useApiDelivery();
+    const { deliveries: items, loading } = useDelivery();
     const [opcion, setOpcion] = useState('');
 
     const handleSelectChange = (e) => {
@@ -88,6 +88,15 @@ export const CheckEstados = ({ estado, id, delivery }) => {
         }
         return null;
     };
+
+    //Filtrar delivery asignado a un pedido
+
+    const filteredDelivery = !loading
+        ? items.filter(item => item.id === delivery)
+        : [];
+
+    //Fin filtrar delivery asignado a un pedido
+
     // FIN SELECT PARA ASIGNAR DELIVERY
 
     // RENDERIZAR RADIO BUTTONS
@@ -162,8 +171,9 @@ export const CheckEstados = ({ estado, id, delivery }) => {
                 <div className={styles.estadoTituloContainer}>
                     <span className={styles.estadoTitulo}>Estado del Pedido:</span>
                     <span className={`${styles.estadoActual} ${styles[estado.toUpperCase().replace(" ", "_")]}`}>
-                        {estado} {estado === 'EN CAMINO' ? `${delivery}` : ''}
+                        {estado}
                     </span>
+                    <p>{filteredDelivery.length > 0 ? <span> Delivery Asignado: </span> : ''}{filteredDelivery[0]?.nombre} {filteredDelivery[0]?.apellido}</p>
                 </div>
                 <div className={styles.estadoRadiosContainer}>
                     <div className={styles.radioGroup}>

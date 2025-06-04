@@ -10,6 +10,7 @@ import { Footer } from './componentes/Footer.jsx';
 import FloatingCart from './componentes/Cart/FloatingCart.jsx';
 import { createFirebaseApp } from './utils/configFirebase.js';
 import { CheckCart } from './componentes/Cart/CheckCart.jsx';
+import { DeliveryProvider } from './componentes/Admin/DeliveryContext.jsx';
 import { Pedidos } from './componentes/Admin/Pedidos.jsx';
 import './style.css';
 
@@ -20,19 +21,21 @@ function App() {
     <Router>
       <div className='contenedorPrincipal'>
         <CartProvider>
-          <NavBar />
-          <BotonPrincipal />
-          <Routes>
-            <Route path="/" element={<ItemMenuContainer />} />
-            <Route path="/categoria/:categoria" element={<ItemListContainer />} />
-            <Route path="/detail/:ID" element={<ItemDetailContainer />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkcart" element={<CheckCart />} />
-            <Route path="/admin" element={<Pedidos />} />
-          </Routes>
-          <FloatingCart />
+          <DeliveryProvider>
+            <NavBar />
+            <BotonPrincipal />
+            <Routes>
+              <Route path="/" element={<ItemMenuContainer />} />
+              <Route path="/categoria/:categoria" element={<ItemListContainer />} />
+              <Route path="/detail/:ID" element={<ItemDetailContainer />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/checkcart" element={<CheckCart />} />
+              <Route path="/admin" element={<Pedidos />} />
+            </Routes>
+            <FloatingCart />
+            <Footer />
+          </DeliveryProvider>
         </CartProvider>
-        <Footer />
       </div>
     </Router>
   );
