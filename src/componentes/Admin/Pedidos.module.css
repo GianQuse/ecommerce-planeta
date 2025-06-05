@@ -182,7 +182,7 @@ ul {
     }
 
     .estadoBoton {
-        width: 80%;
+        width: 70%;
         /* Asegura que el botón ocupe el 100% en móviles */
     }
 
@@ -245,8 +245,16 @@ ul {
     white-space: nowrap;
 }
 
+.estadoBotonCancelar {
+    background-color: #f44336;
+}
+
 .estadoBoton:hover {
     background-color: #2b6cb0;
+}
+
+.estadoBotonCancelar:hover {
+    background-color: #c62828;
 }
 
 .estadoBoton:disabled {

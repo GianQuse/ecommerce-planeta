@@ -155,7 +155,7 @@ export const CheckEstados = ({ estado, id, delivery }) => {
                 <button type="submit" className={styles.estadoBoton} disabled={!selectedEstado}>
                     {selectedEstado === 'EN CAMINO' ? "CAMBIAR Y ASIGNAR" : "CAMBIAR"}
                 </button>
-                <button type="button" className={styles.estadoBoton} disabled={!selectedEstado} onClick={() => setSelectedEstado('')}>
+                <button type="button" className={`${styles.estadoBoton} ${styles.estadoBotonCancelar}`} disabled={!selectedEstado} onClick={() => setSelectedEstado('')}>
                     CANCELAR
                 </button>
             </>
