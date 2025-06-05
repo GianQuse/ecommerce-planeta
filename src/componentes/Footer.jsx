@@ -1,6 +1,7 @@
 import whatsappIcon from '/imagenes/whatsapp.png';
 import instagramIcon from '/imagenes/instagram.png';
 import facebookIcon from '/imagenes/facebook.png';
+import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   return (
@@ -19,6 +20,9 @@ export const Footer = () => {
         <img className="iconosRedes" src={instagramIcon} alt="Instagram" />
         <img className="iconosRedes" src={facebookIcon} alt="Facebook" />
       </div>
+
+      <Link to="/admin"><button>ADMIN</button></Link>
+      <Link to="/delivery"><button>DELIVERY</button></Link>
     </footer>
   );
 };
