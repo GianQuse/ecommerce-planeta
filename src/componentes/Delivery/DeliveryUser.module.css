@@ -22,7 +22,7 @@
     background-color: #f9f9f9;
 }
 
-.pedidoInfo{
+.pedidoInfo {
     margin-bottom: 1rem;
 }
 
@@ -55,4 +55,18 @@
 .botonFiltro.activo {
     background-color: #3182ce;
     color: white;
+}
+
+/* Estilo inicial para el contenedor de los detalles */
+.detallesContainer {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+/* Estilo cuando el contenedor está visible */
+.detallesVisible {
+    max-height: 500px;
+    opacity: 1;
 }

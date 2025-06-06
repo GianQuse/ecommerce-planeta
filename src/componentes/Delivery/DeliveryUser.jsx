@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useApiOrders } from "../../hooks/useApi";
 import { CheckEstados } from "../Admin/CheckEstados";
+import { agruparPorCategoria } from "../../utils/pedidos/agruparCategoria";
 import styles from './DeliveryUser.module.css';
 
 export const DeliveryUser = () => {
@@ -15,6 +16,11 @@ export const DeliveryUser = () => {
     const countPedidos = (estado) => {
         return pedidoAsignado.filter(item => item.estado === estado).length;
     }
+
+    const [detallesVisible, setDetallesVisible] = useState(false);
+    const toggleDetalles = () => {
+        setDetallesVisible(!detallesVisible);
+    };
 
     return (
         <div className={styles.deliveryContainer}>
@@ -54,6 +60,25 @@ export const DeliveryUser = () => {
                                         <p><strong>Dirección:</strong> {pedido.comprador.direccion}</p>
                                         <p><strong>Teléfono:</strong> {pedido.comprador.telefono}</p>
                                         <p><strong>Total:</strong> ${pedido.total}</p>
+                                    </div>
+                                    <div className={styles.productos}>
+                                        <h3 onClick={toggleDetalles} style={{ cursor: "pointer" }}>
+                                            {detallesVisible ? "Ocultar Detalles" : "Ver Detalles"}
+                                        </h3>
+                                        <div className={`${styles.detallesContainer} ${detallesVisible ? styles.detallesVisible : ""}`}>
+                                            {Object.entries(agruparPorCategoria(pedido.productos)).map(([categoria, productos]) => (
+                                                <div key={categoria}>
+                                                    <h4>{categoria}</h4>
+                                                    <ul>
+                                                        {productos.map((producto, index) => (
+                                                            <li key={index}>
+                                                                <strong>{producto.nombre} x {producto.cantidad}</strong> <span>{producto.precio}</span>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
                                     <CheckEstados estado={pedido.estado} id={pedido.id} />
                                 </div>
