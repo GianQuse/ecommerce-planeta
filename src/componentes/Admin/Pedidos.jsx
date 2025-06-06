@@ -1,7 +1,8 @@
 import { useApiOrders } from "../../hooks/useApi";
 import { CheckEstados } from "./CheckEstados";
-import styles from './Pedidos.module.css';
 import { useState } from "react";
+import { agruparPorCategoria } from "../../utils/pedidos/agruparCategoria";
+import styles from './Pedidos.module.css';
 
 export const Pedidos = () => {
     const { items, loading } = useApiOrders();
@@ -14,17 +15,6 @@ export const Pedidos = () => {
             return new Intl.DateTimeFormat('es-AR', opciones).format(fecha);
         }
         return 'Fecha no disponible';
-    };
-
-    const agruparPorCategoria = (productos) => {
-        return productos.reduce((acumulador, producto) => {
-            const { categoria } = producto;
-            if (!acumulador[categoria]) {
-                acumulador[categoria] = [];
-            }
-            acumulador[categoria].push(producto);
-            return acumulador;
-        }, {});
     };
 
     const estadosDisponibles = ["TODOS", "GENERADO", "EN COCINA", "EN CAMINO", "ENTREGADO", "CANCELADO"];

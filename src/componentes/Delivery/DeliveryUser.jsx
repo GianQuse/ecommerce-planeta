@@ -12,7 +12,9 @@ export const DeliveryUser = () => {
 
     const pedidosFiltrados = pedidoAsignado.filter(item => item.estado === filtroEstado);
 
-    const countPedidos = pedidosFiltrados.length;
+    const countPedidos = (estado) => {
+        return pedidoAsignado.filter(item => item.estado === estado).length;
+    }
 
     return (
         <div className={styles.deliveryContainer}>
@@ -27,22 +29,23 @@ export const DeliveryUser = () => {
                                 className={filtroEstado === "EN CAMINO" ? styles.botonFiltro + " " + styles.activo : styles.botonFiltro}
                                 onClick={() => setFiltroEstado("EN CAMINO")}
                             >
-                                {`PENDIENTES (${countPedidos})`}
+                                {`PENDIENTES (${countPedidos("EN CAMINO")})`}
                             </button>
                             <button
                                 className={filtroEstado === "ENTREGADO" ? styles.botonFiltro + " " + styles.activo : styles.botonFiltro}
                                 onClick={() => setFiltroEstado("ENTREGADO")}
                             >
-                                ENTREGADOS
+                                {`ENTREGADOS (${countPedidos("ENTREGADO")})`}
                             </button>
-                            <button
-                                className={filtroEstado === "CANCELADO" ? styles.botonFiltro + " " + styles.activo : styles.botonFiltro}
-                                onClick={() => setFiltroEstado("CANCELADO")}
-                            >
-                                CANCELADOS
-                            </button>
+                            {countPedidos("CANCELADO") > 0 ? (
+                                <button
+                                    className={filtroEstado === "CANCELADO" ? styles.botonFiltro + " " + styles.activo : styles.botonFiltro}
+                                    onClick={() => setFiltroEstado("CANCELADO")}
+                                >
+                                    {`CANCELADOS (${countPedidos("CANCELADO")})`}
+                                </button>) : null}
                         </div>
-                        {countPedidos > 0 ? (
+                        {pedidosFiltrados.length > 0 ? (
                             pedidosFiltrados.map((pedido) => (
                                 <div key={pedido.id} className={styles.pedidoCard}>
                                     <div className={styles.pedidoInfo}>
