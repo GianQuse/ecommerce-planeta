@@ -17,9 +17,14 @@ export const DeliveryUser = () => {
         return pedidoAsignado.filter(item => item.estado === estado).length;
     }
 
-    const [detallesVisible, setDetallesVisible] = useState(false);
-    const toggleDetalles = () => {
-        setDetallesVisible(!detallesVisible);
+    // Estado para controlar la visibilidad de los detalles de cada pedido
+    const [detallesVisibles, setDetallesVisibles] = useState({});
+
+    const toggleDetalles = (id) => {
+        setDetallesVisibles(prevState => ({
+            ...prevState,
+            [id]: !prevState[id]
+        }));
     };
 
     return (
@@ -61,24 +66,24 @@ export const DeliveryUser = () => {
                                         <p><strong>Teléfono:</strong> {pedido.comprador.telefono}</p>
                                         <p><strong>Total:</strong> ${pedido.total}</p>
                                     </div>
-                                    <div className={styles.productos}>
-                                        <h3 onClick={toggleDetalles} style={{ cursor: "pointer" }}>
-                                            {detallesVisible ? "Ocultar Detalles" : "Ver Detalles"}
-                                        </h3>
-                                        <div className={`${styles.detallesContainer} ${detallesVisible ? styles.detallesVisible : ""}`}>
-                                            {Object.entries(agruparPorCategoria(pedido.productos)).map(([categoria, productos]) => (
-                                                <div key={categoria}>
-                                                    <h4>{categoria}</h4>
-                                                    <ul>
-                                                        {productos.map((producto, index) => (
-                                                            <li key={index}>
-                                                                <strong>{producto.nombre} x {producto.cantidad}</strong> <span>{producto.precio}</span>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            ))}
-                                        </div>
+                                    <div className={styles.productosButton}>
+                                        <button className={styles.detallesButton} onClick={() => toggleDetalles(pedido.id)}>
+                                            {detallesVisibles[pedido.id] ? "Ocultar Detalles" : "Ver Detalles"}
+                                        </button>
+                                    </div>
+                                    <div className={`${styles.detallesContainer} ${detallesVisibles[pedido.id] ? styles.detallesVisible : ""}`}>
+                                        {Object.entries(agruparPorCategoria(pedido.productos)).map(([categoria, productos]) => (
+                                            <div key={categoria}>
+                                                <h4>{categoria}</h4>
+                                                <ul>
+                                                    {productos.map((producto, index) => (
+                                                        <li key={index}>
+                                                            <strong>{producto.nombre} x {producto.cantidad}</strong>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        ))}
                                     </div>
                                     <CheckEstados estado={pedido.estado} id={pedido.id} />
                                 </div>
