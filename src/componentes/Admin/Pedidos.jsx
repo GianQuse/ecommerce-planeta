@@ -73,7 +73,7 @@ export const Pedidos = () => {
                                     </div>
                                 ))}
                             </div>
-                            <CheckEstados estado={item.estado} id={item.id} delivery={item.delivery} />
+                            <CheckEstados estado={item.estado} id={item.id} delivery={item.delivery} mostrarEstado={true}/>
                         </div>
                     </div>
                 )))}

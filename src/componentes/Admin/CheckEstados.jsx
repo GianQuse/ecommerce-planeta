@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import styles from './Pedidos.module.css';
 import { useDelivery } from './DeliveryContext';
 
-export const CheckEstados = ({ estado, id, delivery }) => {
+export const CheckEstados = ({ estado, id, delivery, mostrarEstado }) => {
 
     // CAMBIAR ESTADO DEL PEDIDO
     const [selectedEstado, setSelectedEstado] = useState('');
@@ -149,36 +149,34 @@ export const CheckEstados = ({ estado, id, delivery }) => {
     // RENDERIZAR BOTONES SEGÚN ESTADO
     const renderButtons = () => {
         if (estado === 'CANCELADO' || estado === 'ENTREGADO') return null;
-
-        return (
-            <>
-                <button type="submit" className={styles.estadoBoton} disabled={!selectedEstado}>
-                    {selectedEstado === 'EN CAMINO' ? "CAMBIAR Y ASIGNAR" : "CAMBIAR"}
-                </button>
-                <button type="button" className={`${styles.estadoBoton} ${styles.estadoBotonCancelar}`} disabled={!selectedEstado} onClick={() => setSelectedEstado('')}>
-                    CANCELAR
-                </button>
-            </>
-        );
+        return true;
     };
     // FIN RENDERIZAR BOTONES SEGÚN ESTADO
 
     return (
         <div className={styles.estado}>
             <form onSubmit={handleSubmit} className={styles.estadoForm}>
-                <div className={styles.estadoTituloContainer}>
-                    <span className={styles.estadoTitulo}>Estado del Pedido:</span>
-                    <span className={`${styles.estadoActual} ${styles[estado.toUpperCase().replace(" ", "_")]}`}>
-                        {estado}
-                    </span>
-                    <p>{filteredDelivery.length > 0 ? <span> Delivery Asignado: </span> : ''}{filteredDelivery[0]?.nombre} {filteredDelivery[0]?.apellido}</p>
-                </div>
-                <div className={styles.estadoRadiosContainer}>
-                    <div className={styles.radioGroup}>
-                        {renderRadios()}
-                    </div>
-                    {renderButtons()}
-                </div>
+                {mostrarEstado &&
+                    <div className={styles.estadoTituloContainer}>
+                        <span className={styles.estadoTitulo}>Estado del Pedido:</span>
+                        <span className={`${styles.estadoActual} ${styles[estado.toUpperCase().replace(" ", "_")]}`}>
+                            {estado}
+                        </span>
+                        <p>{filteredDelivery.length > 0 ? <span> Delivery Asignado: </span> : ''}{filteredDelivery[0]?.nombre} {filteredDelivery[0]?.apellido}</p>
+                    </div>}
+                {renderButtons() &&
+                    <div className={styles.estadoRadiosContainer}>
+                        <p>Cambiar Estado:</p>
+                        <div className={styles.radioGroup}>
+                            {renderRadios()}
+                        </div>
+                        <button type="submit" className={styles.estadoBoton} disabled={!selectedEstado}>
+                            {selectedEstado === 'EN CAMINO' ? "CAMBIAR Y ASIGNAR" : "CAMBIAR"}
+                        </button>
+                        <button type="button" className={`${styles.estadoBoton} ${styles.estadoBotonCancelar}`} disabled={!selectedEstado} onClick={() => setSelectedEstado('')}>
+                            CANCELAR
+                        </button>
+                    </div>}
             </form>
         </div>
     );

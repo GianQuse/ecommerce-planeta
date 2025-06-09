@@ -57,17 +57,17 @@
     color: white;
 }
 
+/* BOTON DETALLES PEDIDO */
+
 .detallesButton {
-    background-color: #f0f4f8;
-    color: #3182ce;
-    border: 1px solid #a0aec0;
-    border-radius: 6px;
-    font-size: 14px;
-    padding: 3px 7px;
+    background: none;
+    color: black;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 1rem;
+    padding: 0;
     cursor: pointer;
-    font-weight: 500;
-    outline: none;
-    user-select: none;
+    font-weight: normal;
     margin-bottom: 0.7rem;
 }
 
@@ -84,3 +84,4 @@
     margin-bottom: 0.7rem;
 }
 
+/*FIN BOTON DETALLES PEDIDO */

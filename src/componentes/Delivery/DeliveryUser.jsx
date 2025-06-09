@@ -27,6 +27,11 @@ export const DeliveryUser = () => {
         }));
     };
 
+    const mostrarEstado = (pedido) => {
+        if (pedido === 'CANCELADO' || pedido === 'ENTREGADO') return true;
+        return false;
+    }
+
     return (
         <div className={styles.deliveryContainer}>
             <h2 className={styles.titulo}>Pedidos Asignados</h2>
@@ -85,7 +90,7 @@ export const DeliveryUser = () => {
                                             </div>
                                         ))}
                                     </div>
-                                    <CheckEstados estado={pedido.estado} id={pedido.id} />
+                                    <CheckEstados estado={pedido.estado} id={pedido.id} mostrarEstado={mostrarEstado(pedido.estado)}/>
                                 </div>
                             ))
                         ) : (
