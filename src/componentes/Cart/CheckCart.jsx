@@ -48,6 +48,8 @@ export const CheckCart = () => {
         };
 
         addDoc(collectionRef, orderData).then((response) => {
+            localStorage.setItem("orderId", response.id);
+
             MySwal.fire({
                 title: "Pedido creado con éxito",
                 html: `Su orden: <strong>${response.id}</strong>`,

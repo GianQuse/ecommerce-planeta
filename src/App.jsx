@@ -3,6 +3,7 @@ import CartProvider from './componentes/Cart/CartContext.jsx';
 import { ItemMenuContainer } from './componentes/ItemMenuContainer.jsx';
 import { ItemListContainer } from './componentes/ItemListContainer.jsx';
 import { ItemDetailContainer } from './componentes/ItemDetailContainer.jsx';
+import { CustomerOrder } from './componentes/CustomerOrder.jsx';
 import { NavBar } from './componentes/NavBar.jsx';
 import { BotonPrincipal } from './componentes/BotonPrincipal.jsx';
 import { Cart } from './componentes/Cart/Cart.jsx';
@@ -29,6 +30,7 @@ function App() {
               <Route path="/" element={<ItemMenuContainer />} />
               <Route path="/categoria/:categoria" element={<ItemListContainer />} />
               <Route path="/detail/:ID" element={<ItemDetailContainer />} />
+              <Route path="/order" element={<CustomerOrder />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkcart" element={<CheckCart />} />
               <Route path="/admin" element={<Pedidos />} />

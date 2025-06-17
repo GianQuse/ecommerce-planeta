@@ -1,0 +1,144 @@
+/* Título centrado */
+.titulo {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #000;
+}
+
+/* Contenedor principal del pedido */
+.pedidoCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+/* Diseño en grid */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "datos productos"
+        "estado estado";
+    gap: 1rem;
+    position: relative;
+}
+
+.container::after {
+    content: "";
+    position: absolute;
+    top: 5%;
+    bottom: 40%;
+    left: 50%;
+    width: 1px;
+    background-color: #cbd5e0;
+    transform: translateX(-50%);
+}
+
+/* Datos del comprador */
+.datos {
+    grid-area: datos;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    color: #000;
+}
+
+/* Lista de productos */
+.productos {
+    grid-area: productos;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: #000;
+}
+
+.productos ul {
+    list-style-position: inside;
+    padding-left: 0;
+    margin: 0;
+}
+
+/* Estado del pedido */
+.estado {
+    grid-area: estado;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0.5rem;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 1rem;
+    text-align: center;
+}
+
+.estadoActual {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Colores según estado */
+.estadoActual.GENERADO,
+.estadoActual.EN_COCINA {
+    color: #d97706;
+    font-weight: bold;
+}
+
+.estadoActual.EN_CAMINO {
+    color: #2563eb;
+    font-weight: bold;
+}
+
+.estadoActual.ENTREGADO {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+.estadoActual.CANCELADO {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "estado"
+            "datos"
+            "productos";
+    }
+
+    .estado {
+        flex-direction: column;
+        align-items: center;
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 0.8rem;
+        border-top: none;
+        padding-top: 0;
+    }
+
+    .container::after {
+        display: none;
+    }
+
+    .pedidoCard {
+        padding: 1rem;
+    }
+
+    .titulo {
+        font-size: 1.5rem;
+    }
+
+    .estadoActual {
+        font-size: 1rem;
+    }
+}
