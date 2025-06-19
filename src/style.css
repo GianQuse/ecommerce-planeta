@@ -12,7 +12,7 @@
 }
 
 .contenedorPrincipal {
-  width: 100%;
+  width: 100vw;
   max-width: 768px;
   background-color: white;
 }
