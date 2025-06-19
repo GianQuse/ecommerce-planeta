@@ -83,7 +83,7 @@
   background-color: red;
   color: white;
   border: none;
-  border-radius: 20px;
+  border-radius: 50px;
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -172,11 +172,11 @@
   position: relative;
   width: 85%;
   max-width: 400px;
-  height: 100px;
+  height: 85px;
   margin: 20px auto;
   overflow: hidden;
-  border-radius: 30px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 35px;
+  box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.25);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }

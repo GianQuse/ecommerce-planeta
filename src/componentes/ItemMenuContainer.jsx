@@ -10,7 +10,7 @@ export function ItemMenuContainer() {
   const skeletonVariants = {
     width: '85%',
     maxWidth: '400px',
-    height: '100px',
+    height: '85px',
     borderRadius: '30px',
     marginBottom: '20px',
   }
