@@ -34,8 +34,11 @@ export function ItemListContainer() {
                                 <div className='plato-detalle-texto'>
                                     <span className="nombre-plato">{plato.nombre}</span>
                                     <span className="descripcion-plato">{plato.descripcion}</span>
+                                    <span className="precio-plato">${plato.precio}</span>
                                 </div>
-                                <span className="precio-plato">${plato.precio}</span>
+                                <div className="plato-detalle-imagen">
+                                    <img src={plato.imagen} alt={plato.nombre} />
+                                </div>
                             </div>
                         </Link>
                     ))}
