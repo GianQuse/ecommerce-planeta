@@ -9,7 +9,7 @@ export function ItemListContainer() {
 
     const skeletonVariants = {
         width: '90%',
-        height: '55px',
+        height: '95px',
         borderRadius: '12px',
         marginBottom: '20px',
     }

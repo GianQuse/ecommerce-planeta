@@ -126,9 +126,7 @@
   width: 85%;
   max-width: 370px;
   background-color: white;
-  padding: 10px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
   text-align: center;
   font-family: sans-serif;
   margin: 20px auto;
@@ -139,14 +137,11 @@
   width: 100%;
   height: 280px;
   object-fit: cover;
-  border-radius: 4px;
-  margin-bottom: 10px;
 }
 
 /* Estilo para la información del plato */
 .plato-info {
   padding: 8px 0 4px;
-  border-top: 1px solid #eee;
 }
 
 /* Estilo para el nombre del plato */
@@ -158,12 +153,14 @@
 /* Estilo para la descripción del plato */
 .plato-descripcion {
   margin: 2px 0;
+  font-size: 0.9rem;
   font-weight: normal;
   color: #666;
 }
 
 /* Estilo para los precios */
 .plato-precio {
+  font-size: 1.4rem;
   margin: 4px 0;
   font-weight: bold;
 }
@@ -234,7 +231,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: #fafafa;
-  padding: 14px 18px;
+  padding: 11px 15px;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -262,9 +259,9 @@
 /* Estilo para el precio */
 .precio-plato {
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #007bff;
-  margin-top: 5px;
+  margin-top: 7px;
 }
 
 .plato-detalle-imagen {
