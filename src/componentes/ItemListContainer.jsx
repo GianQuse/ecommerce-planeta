@@ -1,9 +1,13 @@
 import { useParams, Link } from 'react-router-dom';
 import { useApiList } from '../hooks/useApi';
+import { useContext } from 'react';
+import { cartContext } from './Cart/CartContext';
 import Skeleton from './Skeleton';
 
 export function ItemListContainer() {
     const { categoria } = useParams();
+
+    const { formatAsPesoArgentino } = useContext(cartContext);
 
     const { items, loading } = useApiList(categoria);
 
@@ -34,10 +38,11 @@ export function ItemListContainer() {
                                 <div className='plato-detalle-texto'>
                                     <span className="nombre-plato">{plato.nombre}</span>
                                     <span className="descripcion-plato">{plato.descripcion}</span>
-                                    <span className="precio-plato">${plato.precio}</span>
+                                    <span className="precio-plato">{formatAsPesoArgentino(plato.precio)}</span>
                                 </div>
                                 <div className="plato-detalle-imagen">
                                     <img src={plato.imagen} alt={plato.nombre} />
+                                    <div className='plato-boton'>+</div>
                                 </div>
                             </div>
                         </Link>

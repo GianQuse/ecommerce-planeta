@@ -4,7 +4,7 @@ export const BotonPrincipal = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const buttomText = location.pathname === '/' ? 'Bienvenido/a' : 'Menu Principal';
+    const buttomText = location.pathname === '/' ? 'Bienvenido/a' : 'Volver a Inicio';
 
     const isHomePage = location.pathname === '/';
     

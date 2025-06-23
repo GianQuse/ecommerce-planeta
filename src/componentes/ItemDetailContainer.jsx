@@ -1,12 +1,16 @@
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useApiDetail } from '../hooks/useApi';
+import { useContext } from 'react';
+import { cartContext } from './Cart/CartContext';
 import Skeleton from './Skeleton';
 import Counter from './Contador';
 
 export function ItemDetailContainer() {
     const { ID } = useParams();
     const navigate = useNavigate();
+
+    const { formatAsPesoArgentino } = useContext(cartContext);
 
     const { items, loading } = useApiDetail(ID);
 
@@ -25,11 +29,11 @@ export function ItemDetailContainer() {
                     <div className="plato-info">
                         <h3 className="plato-nombre">{items.nombre}</h3>
                         <h4 className="plato-descripcion">{items.descripcion}</h4>
-                        <p className="plato-precio">${items.precio}</p>
+                        <p className="plato-precio">{formatAsPesoArgentino(items.precio)}</p>
                     </div>
                     <Counter product={items} />
                 </div>
-                <button className='plato-button' onClick={() => navigate(-1)}>Volver atrás</button>
+                <button className='plato-button' onClick={() => navigate(-1)}>Atrás</button>
             </div>
         ));
 }
