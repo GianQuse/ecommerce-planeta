@@ -47,7 +47,7 @@ export function useApiDetail(ID) {
     const { items, setItems, loading, setLoading } = useApiState();
 
     useEffect(() => {
-        const db = getFirestore();
+        const db = getFirestore()
         const menuCollection = collection(db, 'menu');
         getDocs(menuCollection).then((response) => {
             const responseMapped = response.docs.map((doc) => ({ ...doc.data() }));
@@ -65,19 +65,10 @@ export function useApiDetail(ID) {
             setItems(platoEncontrado);
         }).finally(() => {
             setLoading(false);
-
-            const scrollOptions = { top: 160, behavior: 'smooth' };
-
-            // Para compatibilidad con todos los navegadores
-            if (document.documentElement) {
-                document.documentElement.scrollTo(scrollOptions);
-            }
-
-            if (document.body) {
-                document.body.scrollTo(scrollOptions);
-            }
-
-            window.scrollTo(scrollOptions);
+            window.scrollTo({
+                top: 1,
+                behavior: 'smooth'
+            });
         });
     }, []);
 
