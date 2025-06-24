@@ -66,7 +66,7 @@ export function useApiDetail(ID) {
         }).finally(() => {
             setLoading(false);
 
-            const scrollOptions = { top: 0, behavior: 'smooth' };
+            const scrollOptions = { top: 160, behavior: 'smooth' };
 
             // Para compatibilidad con todos los navegadores
             if (document.documentElement) {
