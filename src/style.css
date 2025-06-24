@@ -118,7 +118,6 @@
 
 .contenedor-plato {
   display: flex;
-  align-items: center;
   flex-direction: column;
 }
 
@@ -161,7 +160,7 @@
 
 /* Estilo para la información del plato */
 .plato-info {
-  padding: 8px 0 4px;
+  padding: 10px 15px;
 }
 
 /* Estilo para el nombre del plato */
@@ -180,7 +179,7 @@
 
 /* Estilo para los precios */
 .plato-precio {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   margin: 4px 0;
   font-weight: bold;
 }
@@ -354,98 +353,71 @@ footer {
 
 /*INICIO CONTADOR PLATO*/
 .counter-wrapper {
+  width: 90%;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  gap: 12px;
+  font-family: sans-serif;
+  margin: 0 auto;
 }
 
+/* Contenedor del contador */
 .counter-container {
+  width: 35%;
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f7;
+  border-radius: 999px;
+  padding: 8px 12px;
+}
+
+/* Botones + y - */
+.counter-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #0a001a;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.counter-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Valor numérico */
+.counter-value {
+  margin: 0 8px;
+  font-size: 18px;
+  color: #0a001a;
+}
+
+/* Botón "Agregar al carrito" */
+.add-to-cart-modern {
+  width: 65%;
+  background-color: #ec0044;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  font-size: 24px;
-  padding: 15px 30px;
-  max-width: 300px;
-  margin: auto;
+  gap: 8px;
 }
 
-.counter-button {
-  padding: 10px 16px;
-  font-size: 20px;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease, transform 0.1s ease;
-}
-
-.counter-button:active {
-  transform: scale(0.95);
-}
-
-.counter-button.decrement {
-  background-color: #e74c3c;
-  /* rojo */
-}
-
-.counter-button.decrement:hover {
-  background-color: #c0392b;
-}
-
-.counter-button.increment {
-  background-color: #2ecc71;
-  /* verde */
-}
-
-.counter-button.increment:hover {
-  background-color: #27ae60;
-}
-
-.counter-value {
-  min-width: 40px;
-  text-align: center;
-  font-size: 26px;
-  font-weight: 600;
-  color: #333;
-}
-
-/*INICIO BOTON CARRITO*/
-
+/* Ícono de carrito */
 .cart-icon-button {
   width: 20px;
   height: 20px;
+  object-fit: contain;
   filter: invert();
-  margin-left: 5px;
 }
-
-.add-to-cart-modern {
-  display: flex;
-  align-items: center;
-  margin: 10px 0 15px 0;
-  padding: 12px 24px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.1s ease;
-  box-shadow: 0 4px 12px rgba(0, 112, 243, 0.2);
-}
-
-.add-to-cart-modern:hover {
-  background-color: #0070f3;
-}
-
-.add-to-cart-modern:active {
-  transform: scale(0.96);
-}
-
-/*FIN BOTON CARRITO*/
 
 /*FIN CONTADOR PLATO*/
 

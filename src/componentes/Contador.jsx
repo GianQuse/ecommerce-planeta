@@ -34,13 +34,13 @@ function Counter({ product }) {
   return (
     <div className="counter-wrapper">
       <div className="counter-container">
-        <button onClick={decrease} className="counter-button decrement">-</button>
+        <button onClick={decrease} disabled={count === 1} className="counter-button decrement">-</button>
         <span className="counter-value">{count}</span>
         <button onClick={increase} className="counter-button increment">+</button>
       </div>
 
       <button className="add-to-cart-modern" onClick={handleAddToCart}>
-        Agregar al carrito <img src={cartIcon} alt="Carrito de compras" className="cart-icon-button" />
+        Agregar<img src={cartIcon} alt="Carrito de compras" className="cart-icon-button" />
       </button>
     </div>
   );
