@@ -24,16 +24,20 @@ export function ItemDetailContainer() {
             />
         ) : (
             <div className='contenedor-plato'>
-                <div className="plato-card">
+                <div className='contenedorPlatoImg'>
                     <img src={items.imagen} alt={items.nombre} className="plato-img" />
-                    <div className="plato-info">
-                        <h3 className="plato-nombre">{items.nombre}</h3>
-                        <h4 className="plato-descripcion">{items.descripcion}</h4>
-                        <p className="plato-precio">{formatAsPesoArgentino(items.precio)}</p>
-                    </div>
-                    <Counter product={items} />
+                    <button className='plato-button' onClick={() => navigate(-1)}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 6L9 12L15 18" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
                 </div>
-                <button className='plato-button' onClick={() => navigate(-1)}>Atrás</button>
+                <div className="plato-info">
+                    <h3 className="plato-nombre">{items.nombre}</h3>
+                    <h4 className="plato-descripcion">{items.descripcion}</h4>
+                    <p className="plato-precio">{formatAsPesoArgentino(items.precio)}</p>
+                </div>
+                <Counter product={items} />
             </div>
         ));
 }

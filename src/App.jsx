@@ -4,16 +4,14 @@ import { ItemMenuContainer } from './componentes/ItemMenuContainer.jsx';
 import { ItemListContainer } from './componentes/ItemListContainer.jsx';
 import { ItemDetailContainer } from './componentes/ItemDetailContainer.jsx';
 import { CustomerOrder } from './componentes/CustomerOrder.jsx';
-import { NavBar } from './componentes/NavBar.jsx';
-import { BotonPrincipal } from './componentes/BotonPrincipal.jsx';
 import { Cart } from './componentes/Cart/Cart.jsx';
-import { Footer } from './componentes/Footer.jsx';
 import FloatingCart from './componentes/Cart/FloatingCart.jsx';
 import { createFirebaseApp } from './utils/configFirebase.js';
 import { CheckCart } from './componentes/Cart/CheckCart.jsx';
 import { DeliveryProvider } from './componentes/Admin/DeliveryContext.jsx';
 import { Pedidos } from './componentes/Admin/Pedidos.jsx';
 import { DeliveryUser } from './componentes/Delivery/DeliveryUser.jsx';
+import { WithNavLayout, WithoutNavLayout } from './layouts/Layouts.jsx';
 import './style.css';
 
 function App() {
@@ -24,24 +22,26 @@ function App() {
       <div className='contenedorPrincipal'>
         <CartProvider>
           <DeliveryProvider>
-            <NavBar />
-            <BotonPrincipal />
             <Routes>
-              <Route path="/" element={<ItemMenuContainer />} />
-              <Route path="/categoria/:categoria" element={<ItemListContainer />} />
-              <Route path="/detail/:ID" element={<ItemDetailContainer />} />
-              <Route path="/order" element={<CustomerOrder />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/checkcart" element={<CheckCart />} />
-              <Route path="/admin" element={<Pedidos />} />
-              <Route path="/delivery" element={<DeliveryUser />} />
+              <Route element={<WithoutNavLayout />}>
+                <Route path="/detail/:ID" element={<ItemDetailContainer />} />
+              </Route>
+
+              <Route element={<WithNavLayout />}>
+                <Route path="/" element={<ItemMenuContainer />} />
+                <Route path="/categoria/:categoria" element={<ItemListContainer />} />
+                <Route path="/order" element={<CustomerOrder />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/checkcart" element={<CheckCart />} />
+                <Route path="/admin" element={<Pedidos />} />
+                <Route path="/delivery" element={<DeliveryUser />} />
+              </Route>
             </Routes>
             <FloatingCart />
-            <Footer />
           </DeliveryProvider>
         </CartProvider>
       </div>
-    </Router>
+    </Router >
   );
 }
 

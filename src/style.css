@@ -122,21 +122,41 @@
   flex-direction: column;
 }
 
-.plato-card {
-  width: 85%;
-  max-width: 370px;
-  background-color: white;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  font-family: sans-serif;
-  margin: 20px auto;
+.contenedorPlatoImg {
+  width: 100vw;
+  max-width: 768px;
+  border-radius: 0 0 28px 28px;
+  position: relative;
 }
 
-/* Estilo para las imágenes de los platos */
 .plato-img {
   width: 100%;
   height: 280px;
   object-fit: cover;
+  border-radius: inherit;
+}
+
+.plato-button {
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  width: 32px;
+  height: 32px;
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  z-index: 2;
+  padding: 0;
+}
+
+.plato-button:hover {
+  background-color: #f0f0f0;
 }
 
 /* Estilo para la información del plato */
@@ -293,19 +313,6 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.plato-button {
-  margin-top: 10px;
-  padding: 0.5rem 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease;
 }
 
 .plato-card button:hover {

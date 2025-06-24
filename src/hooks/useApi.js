@@ -66,7 +66,7 @@ export function useApiDetail(ID) {
         }).finally(() => {
             setLoading(false);
             window.scrollTo({
-                top: 160,
+                top: 0,
                 behavior: 'smooth'
             });
         });
