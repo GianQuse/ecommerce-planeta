@@ -3,7 +3,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Times New Roman', Times, serif;
 }
 
 #root {
@@ -129,6 +128,7 @@
   border-radius: 0 0 28px 28px;
   overflow: hidden;
   position: relative;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .plato-img {
@@ -168,8 +168,8 @@
 
 /* Estilo para el nombre del plato */
 .plato-nombre {
-  margin: 4px 0;
-  font-size: 1.1rem;
+  margin: 5px 0;
+  font-size: 1.2rem;
 }
 
 /* Estilo para la descripción del plato */
@@ -433,7 +433,7 @@ footer {
 }
 
 .recomendados-titulo {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
