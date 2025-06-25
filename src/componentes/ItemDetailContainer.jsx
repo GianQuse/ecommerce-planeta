@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useApiDetail } from '../hooks/useApi';
 import { useContext, useEffect } from 'react';
 import { cartContext } from './Cart/CartContext';
+import Recomendados from './Recomendados';
 import Skeleton from './Skeleton';
 import Counter from './Contador';
 
@@ -42,6 +43,7 @@ export function ItemDetailContainer() {
                     <p className="plato-precio">{formatAsPesoArgentino(items.precio)}</p>
                 </div>
                 <Counter product={items} />
+                <Recomendados currentID={ID} containLoading={loading}/>
             </div>
         ));
 }

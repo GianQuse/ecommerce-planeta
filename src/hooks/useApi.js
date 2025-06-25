@@ -66,7 +66,7 @@ export function useApiDetail(ID) {
         }).finally(() => {
             setLoading(false);
         });
-    }, []);
+    }, [ID]);
 
     return { items, loading };
 }

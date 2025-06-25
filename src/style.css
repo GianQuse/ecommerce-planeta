@@ -251,7 +251,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /*background-color: #fafafa;*/
   padding: 11px 15px;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -264,10 +263,11 @@
   width: 60%;
 }
 
-/* Hover en cada plato */
-.plato-detalle:hover {
-  background-color: #f0f0f0;
-  transform: scale(1.02);
+@media (hover: hover) {
+  .plato-detalle:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.02);
+  }
 }
 
 /* Estilo para el nombre del plato */
@@ -466,3 +466,29 @@ footer {
 }
 
 /*FIN CARRITO FLOTANTE*/
+
+
+
+.recomendado-contenedor {
+  padding: 20px;
+}
+
+.recomendado-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+}
+
+.recomendado-item {
+  background: white;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.recomendado-item img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}

@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useApiList } from '../hooks/useApi';
-import { useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { cartContext } from './Cart/CartContext';
 import Skeleton from './Skeleton';
 
@@ -17,6 +17,10 @@ export function ItemListContainer() {
         borderRadius: '12px',
         marginBottom: '20px',
     }
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });    
+    }, [categoria]);
 
     return (
         <div className="todos-platos-lista">
