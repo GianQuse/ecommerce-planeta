@@ -62,10 +62,6 @@ export function useApiDetail(ID) {
                     break;
                 }
             }
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
             setItems(platoEncontrado);
         }).finally(() => {
             setLoading(false);

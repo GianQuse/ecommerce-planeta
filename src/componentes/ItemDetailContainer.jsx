@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useApiDetail } from '../hooks/useApi';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { cartContext } from './Cart/CartContext';
 import Skeleton from './Skeleton';
 import Counter from './Contador';
@@ -13,6 +13,10 @@ export function ItemDetailContainer() {
     const { formatAsPesoArgentino } = useContext(cartContext);
 
     const { items, loading } = useApiDetail(ID);
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [ID]);
 
     return (
         loading ? (
