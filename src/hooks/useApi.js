@@ -62,13 +62,13 @@ export function useApiDetail(ID) {
                     break;
                 }
             }
-            setItems(platoEncontrado);
-        }).finally(() => {
-            setLoading(false);
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
+            setItems(platoEncontrado);
+        }).finally(() => {
+            setLoading(false);
         });
     }, []);
 
