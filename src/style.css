@@ -360,11 +360,12 @@ footer {
   align-items: center;
   gap: 12px;
   font-family: sans-serif;
-  margin: 15px auto 5px auto;
+  margin: 10px auto 20px auto;
 }
 
 /* Contenedor del contador */
 .counter-container {
+  height: 44px;
   width: 35%;
   display: flex;
   align-items: center;
@@ -399,6 +400,7 @@ footer {
 
 /* Botón "Agregar al carrito" */
 .add-to-cart-modern {
+  height: 44px;
   width: 65%;
   background-color: #ec0044;
   color: white;
@@ -420,6 +422,12 @@ footer {
   height: 20px;
   object-fit: contain;
   filter: invert();
+}
+
+
+.recomendados-titulo-container {
+  border-top: 1px solid #cbd5e0;
+  padding-top: 20px;
 }
 
 /*FIN CONTADOR PLATO*/
@@ -466,29 +474,3 @@ footer {
 }
 
 /*FIN CARRITO FLOTANTE*/
-
-
-
-.recomendado-contenedor {
-  padding: 20px;
-}
-
-.recomendado-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 20px;
-}
-
-.recomendado-item {
-  background: white;
-  padding: 12px;
-  border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-  text-align: center;
-}
-.recomendado-item img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 8px;
-}

@@ -43,7 +43,7 @@ export function ItemDetailContainer() {
                     <p className="plato-precio">{formatAsPesoArgentino(items.precio)}</p>
                 </div>
                 <Counter product={items} />
-                <Recomendados currentID={ID} containLoading={loading}/>
+                <Recomendados currentID={ID} />
             </div>
         ));
 }
