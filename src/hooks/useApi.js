@@ -8,17 +8,27 @@ export function useApiState() {
 }
 
 export function useApiMenu() {
+
     const { items, setItems, loading, setLoading } = useApiState();
 
     useEffect(() => {
-        const db = getFirestore()
-        const menuCollection = collection(db, 'menu');
-        getDocs(menuCollection).then((response) => {
-            const responseMapped = response.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-            setItems(responseMapped);
-        }).finally(() => {
-            setLoading(false);
-        });
+
+        fetch("http://localhost:3000/products")
+
+            .then((response) => response.json())
+
+            .then((data) => {
+                setItems(data.products);
+            })
+
+            .catch((error) => {
+                console.log(error);
+            })
+
+            .finally(() => {
+                setLoading(false);
+            });
+
     }, []);
 
     return { items, loading };
