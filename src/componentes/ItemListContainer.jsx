@@ -5,6 +5,7 @@ import { cartContext } from './Cart/CartContext';
 import Skeleton from './Skeleton';
 
 export function ItemListContainer() {
+
     const { categoria } = useParams();
 
     const { formatAsPesoArgentino } = useContext(cartContext);
@@ -16,37 +17,79 @@ export function ItemListContainer() {
         height: '95px',
         borderRadius: '12px',
         marginBottom: '20px',
-    }
+    };
 
     useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });    
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+
     }, [categoria]);
 
     return (
+
         <div className="todos-platos-lista">
+
             {loading ? (
+
                 <Skeleton
                     count={8}
                     variants={[
-                        { width: '35%', height: '32px', borderRadius: '12px', marginBottom: '30px' },
+                        {
+                            width: '35%',
+                            height: '32px',
+                            borderRadius: '12px',
+                            marginBottom: '30px'
+                        },
                         ...Array(7).fill(skeletonVariants)
                     ]}
                     marginTop={15}
                 />
+
             ) : (
+
                 <>
-                    <h2 className="menu-title">{categoria}</h2>
-                    {items.map((plato, index) => (
-                        <Link to={`/detail/${plato.ID}`} key={index} className="menu-principal-link">
+                    <h2 className="menu-title">
+                        {categoria}
+                    </h2>
+
+                    {items.map((plato) => (
+
+                        <Link
+                            to={`/detail/${plato._id}`}
+                            key={plato._id}
+                            className="menu-principal-link"
+                        >
+
                             <div className="plato-detalle">
+
                                 <div className='plato-detalle-texto'>
-                                    <span className="nombre-plato">{plato.nombre}</span>
-                                    <span className="descripcion-plato">{plato.descripcion}</span>
-                                    <span className="precio-plato">{formatAsPesoArgentino(plato.precio)}</span>
+
+                                    <span className="nombre-plato">
+                                        {plato.nombre}
+                                    </span>
+
+                                    <span className="descripcion-plato">
+                                        {plato.descripcion}
+                                    </span>
+
+                                    <span className="precio-plato">
+                                        {formatAsPesoArgentino(plato.precio)}
+                                    </span>
+
                                 </div>
+
                                 <div className="plato-detalle-imagen">
-                                    <img src={plato.imagen} alt={plato.nombre} />
+
+                                    <img
+                                        src={plato.imagen}
+                                        alt={plato.nombre}
+                                    />
+
                                     <div className="plato-boton">
+
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="16"
@@ -58,17 +101,35 @@ export function ItemListContainer() {
                                             strokeLinecap="round"
                                             strokeLinejoin="round"
                                         >
-                                            <line x1="12" y1="5" x2="12" y2="19" />
-                                            <line x1="5" y1="12" x2="19" y2="12" />
+                                            <line
+                                                x1="12"
+                                                y1="5"
+                                                x2="12"
+                                                y2="19"
+                                            />
+
+                                            <line
+                                                x1="5"
+                                                y1="12"
+                                                x2="19"
+                                                y2="12"
+                                            />
+
                                         </svg>
+
                                     </div>
+
                                 </div>
 
                             </div>
+
                         </Link>
+
                     ))}
                 </>
+
             )}
+
         </div>
     );
 }

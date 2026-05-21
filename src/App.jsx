@@ -24,7 +24,7 @@ function App() {
           <DeliveryProvider>
             <Routes>
               <Route element={<WithoutNavLayout />}>
-                <Route path="/detail/:ID" element={<ItemDetailContainer />} />
+                <Route path="/detail/:id" element={<ItemDetailContainer />} />
               </Route>
 
               <Route element={<WithNavLayout />}>

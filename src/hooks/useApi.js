@@ -35,48 +35,72 @@ export function useApiMenu() {
 }
 
 export function useApiList(categoria) {
+
     const { items, setItems, loading, setLoading } = useApiState();
 
     useEffect(() => {
-        const db = getFirestore()
-        const menuCollection = collection(db, 'menu');
-        const queryCollection = query(menuCollection, where('tipo', '==', categoria));
 
-        getDocs(queryCollection).then((response) => {
-            const responseMapped = response.docs[0].data().platos || [];
-            setItems(responseMapped);
-        }).finally(() => {
-            setLoading(false);
-        });
+        fetch(`http://localhost:3000/products`)
+
+            .then((response) => response.json())
+
+            .then((data) => {
+
+                // Filtrar categoría
+                const productosFiltrados = data.products.filter(
+                    item => item.categoria === categoria
+                );
+
+                setItems(productosFiltrados);
+
+            })
+
+            .catch((error) => {
+
+                console.log(error);
+
+            })
+
+            .finally(() => {
+
+                setLoading(false);
+
+            });
+
     }, [categoria]);
 
     return { items, loading };
 }
 
-export function useApiDetail(ID) {
+export function useApiDetail(id) {
+
     const { items, setItems, loading, setLoading } = useApiState();
 
     useEffect(() => {
-        const db = getFirestore()
-        const menuCollection = collection(db, 'menu');
-        getDocs(menuCollection).then((response) => {
-            const responseMapped = response.docs.map((doc) => ({ ...doc.data() }));
-            let platoEncontrado = null;
-            for (const item of responseMapped) {
-                const plato = item.platos.find(p => p.ID === ID);
-                if (plato) {
-                    platoEncontrado = {
-                        ...plato,
-                        categoria: item.tipo,
-                    };
-                    break;
-                }
-            }
-            setItems(platoEncontrado);
-        }).finally(() => {
-            setLoading(false);
-        });
-    }, [ID]);
+
+        fetch(`http://localhost:3000/products/${id}`)
+
+            .then((response) => response.json())
+
+            .then((data) => {
+
+                setItems(data.product);
+
+            })
+
+            .catch((error) => {
+
+                console.log(error);
+
+            })
+
+            .finally(() => {
+
+                setLoading(false);
+
+            });
+
+    }, [id]);
 
     return { items, loading };
 }
