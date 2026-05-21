@@ -5,6 +5,7 @@ import { ItemListContainer } from './componentes/ItemListContainer.jsx';
 import { ItemDetailContainer } from './componentes/ItemDetailContainer.jsx';
 import { CustomerOrder } from './componentes/CustomerOrder.jsx';
 import CreateProduct from './componentes/CreateProduct.jsx';
+import AdminProducts from './componentes/AdminProducts.jsx';
 import { Cart } from './componentes/Cart/Cart.jsx';
 import FloatingCart from './componentes/Cart/FloatingCart.jsx';
 import { createFirebaseApp } from './utils/configFirebase.js';
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/checkcart" element={<CheckCart />} />
                 <Route path="/admin" element={<Pedidos />} />
                 <Route path="/admin/create-product" element={<CreateProduct />} />
+                <Route path="/admin/products" element={<AdminProducts />} />
                 <Route path="/delivery" element={<DeliveryUser />} />
               </Route>
             </Routes>

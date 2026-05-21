@@ -1,4 +1,5 @@
 import { useApiOrders } from "../../hooks/useApi";
+import { useNavigate } from "react-router-dom";
 import { CheckEstados } from "./CheckEstados";
 import { useState } from "react";
 import { agruparPorCategoria } from "../../utils/pedidos/agruparCategoria";
@@ -7,6 +8,7 @@ import styles from './Pedidos.module.css';
 export const Pedidos = () => {
     const { items, loading } = useApiOrders();
     const [filtroEstado, setFiltroEstado] = useState("TODOS");
+    const navigate = useNavigate();
 
     const formatDate = (timestamp) => {
         if (timestamp && timestamp.toDate) {
@@ -73,10 +75,22 @@ export const Pedidos = () => {
                                     </div>
                                 ))}
                             </div>
-                            <CheckEstados estado={item.estado} id={item.id} delivery={item.delivery} mostrarEstado={true}/>
+                            <CheckEstados estado={item.estado} id={item.id} delivery={item.delivery} mostrarEstado={true} />
                         </div>
                     </div>
                 )))}
+            <button
+                className={styles.adminCreateButton}
+                onClick={() => navigate('/admin/create-product')}
+            >
+                Crear producto
+            </button>
+                        <button
+                className={styles.adminCreateButton}
+                onClick={() => navigate('/admin/products')}
+            >
+                Ver productos
+            </button>
         </div>
     );
 };

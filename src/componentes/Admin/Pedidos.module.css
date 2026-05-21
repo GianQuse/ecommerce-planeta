@@ -261,3 +261,17 @@ ul {
     background-color: #cbd5e0;
     cursor: not-allowed;
 }
+
+.adminCreateButton {
+    border: none;
+    border-radius: 12px;
+
+    padding: 12px 18px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    margin-bottom: 20px;
+}
