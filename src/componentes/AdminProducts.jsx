@@ -1,4 +1,5 @@
 import { useApiMenu } from '../hooks/useApi';
+import { Link } from 'react-router-dom';
 
 export default function AdminProducts() {
 
@@ -69,6 +70,12 @@ export default function AdminProducts() {
                     <p>{product.categoria}</p>
 
                     <p>${product.precio}</p>
+
+                    <Link to={`/admin/edit-product/${product._id}`}>
+                        <button>
+                            Editar
+                        </button>
+                    </Link>
 
                     <button
                         onClick={() => handleDelete(product._id)}
