@@ -77,7 +77,7 @@ export const Cart = () => {
                                 </div>
                                 <button
                                     className={styles.removeFromCartButton}
-                                    onClick={() => removeItem(cartItem.product.nombre, cartItem.product.descripcion)}
+                                    onClick={() => removeItem(cartItem.product._id)}
                                 >
                                     Quitar
                                 </button>

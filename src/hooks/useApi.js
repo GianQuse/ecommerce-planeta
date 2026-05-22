@@ -1,4 +1,3 @@
-import { collection, getDocs, getFirestore, query, where, onSnapshot, orderBy } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
 export function useApiState() {
@@ -106,25 +105,51 @@ export function useApiDetail(id) {
 }
 
 export function useApiOrders() {
-    const { items, setItems, loading, setLoading } = useApiState();
+
+    const {
+
+        items,
+
+        setItems,
+
+        loading,
+
+        setLoading
+
+    } = useApiState();
 
     useEffect(() => {
-        const db = getFirestore();
-        const ordersCollection = collection(db, 'orders');
 
-        const orderedQuery = query(ordersCollection, orderBy('fecha', 'desc'));
+        fetch("http://localhost:3000/orders")
 
-        const unsubscribe = onSnapshot(orderedQuery, (snapshot) => {
-            const responseMapped = snapshot.docs.map((doc) => ({
-                ...doc.data(),
-                id: doc.id,
-            }));
-            setItems(responseMapped);
-            setLoading(false);
-        });
+            .then((response) => response.json())
 
-        return () => unsubscribe();
+            .then((data) => {
+
+                setItems(data.orders);
+
+            })
+
+            .catch((error) => {
+
+                console.log(error);
+
+            })
+
+            .finally(() => {
+
+                setLoading(false);
+
+            });
+
     }, []);
 
-    return { items, loading };
+    return {
+
+        items,
+
+        loading
+
+    };
+
 }

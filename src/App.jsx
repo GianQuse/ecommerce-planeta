@@ -9,7 +9,6 @@ import AdminProducts from './componentes/AdminProducts.jsx';
 import EditProduct from './componentes/EditProduct.jsx';
 import { Cart } from './componentes/Cart/Cart.jsx';
 import FloatingCart from './componentes/Cart/FloatingCart.jsx';
-import { createFirebaseApp } from './utils/configFirebase.js';
 import { CheckCart } from './componentes/Cart/CheckCart.jsx';
 import { DeliveryProvider } from './componentes/Admin/DeliveryContext.jsx';
 import { Pedidos } from './componentes/Admin/Pedidos.jsx';
@@ -18,8 +17,6 @@ import { WithNavLayout, WithoutNavLayout } from './layouts/Layouts.jsx';
 import './style.css';
 
 function App() {
-  createFirebaseApp();
-
   return (
     <Router>
       <div className='contenedorPrincipal'>
