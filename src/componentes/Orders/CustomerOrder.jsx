@@ -179,7 +179,7 @@ export const CustomerOrder = () => {
                                         ${styles.estadoActual}
 
                                         ${styles[
-                                        miPedido.estadoPedido
+                                        miPedido.estado
                                             .toUpperCase()
                                             .replace(" ", "_")
                                         ]}
@@ -188,7 +188,7 @@ export const CustomerOrder = () => {
 
                                 >
 
-                                    {miPedido.estadoPedido}
+                                    {miPedido.estado}
 
                                 </span>
 
