@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useApiDetail } from '../hooks/useApi';
+import { useApiDetail } from '../../hooks/useApi';
 import { useContext, useEffect } from 'react';
 import { cartContext } from './Cart/CartContext';
-import Recomendados from './Recomendados';
-import Skeleton from './Skeleton';
-import Counter from './Contador';
+import Recomendados from '../Recomendados';
+import Skeleton from '../UI/Skeleton';
+import Counter from '../UI/Contador';
 
 export function ItemDetailContainer() {
 

@@ -1,6 +1,6 @@
-import { useApiOrders } from '../hooks/useApi';
+import { useApiOrders } from '../../hooks/useApi';
 
-import { agruparPorCategoria } from '../utils/pedidos/agruparCategoria';
+import { agruparPorCategoria } from '../../utils/pedidos/agruparCategoria';
 
 import styles from './CustomerOrder.module.css';
 

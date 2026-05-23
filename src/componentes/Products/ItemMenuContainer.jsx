@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useApiMenu } from '../hooks/useApi';
-import Skeleton from './Skeleton';
+import { useApiMenu } from '../../hooks/useApi';
+import Skeleton from '../Skeleton';
 
 export function ItemMenuContainer() {
 
