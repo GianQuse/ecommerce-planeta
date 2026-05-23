@@ -1,6 +1,6 @@
-import whatsappIcon from '/imagenes/whatsapp.png';
-import instagramIcon from '/imagenes/instagram.png';
-import facebookIcon from '/imagenes/facebook.png';
+import whatsappIcon from '/imagenes/redes/whatsapp.png';
+import instagramIcon from '/imagenes/redes/instagram.png';
+import facebookIcon from '/imagenes/redes/facebook.png';
 import { Link } from 'react-router-dom';
 
 export const Footer = () => {

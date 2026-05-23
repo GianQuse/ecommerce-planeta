@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useApiOrders } from "../../hooks/useApi";
-import { CheckEstados } from "../Admin/pedidos/CheckEstados";
+import CheckEstados from "../Admin/pedidos/CheckEstados";
 import { agruparPorCategoria } from "../../utils/pedidos/agruparCategoria";
 import styles from './DeliveryUser.module.css';
 
@@ -90,7 +90,7 @@ export const DeliveryUser = () => {
                                             </div>
                                         ))}
                                     </div>
-                                    <CheckEstados estado={pedido.estado} id={pedido.id} mostrarEstado={mostrarEstado(pedido.estado)}/>
+                                    <CheckEstados estado={pedido.estado} id={pedido.id} mostrarEstado={mostrarEstado(pedido.estado)} />
                                 </div>
                             ))
                         ) : (

@@ -1,6 +1,6 @@
 import { useApiOrders } from '../../../hooks/useApi';
 import { useNavigate } from "react-router-dom";
-import { CheckEstados } from "./CheckEstados";
+import CheckEstados from './CheckEstados';
 import { useState } from "react";
 import { agruparPorCategoria } from '../../../utils/pedidos/agruparCategoria';
 import styles from './Pedidos.module.css';
@@ -85,7 +85,7 @@ export const Pedidos = () => {
             >
                 Crear producto
             </button>
-                        <button
+            <button
                 className={styles.adminCreateButton}
                 onClick={() => navigate('/admin/products')}
             >
