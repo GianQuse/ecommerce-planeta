@@ -1,6 +1,6 @@
 import styles from './CheckCart.module.css';
 
-import { cartContext } from './CartContext';
+import { cartContext } from '../../context/CartContext';
 
 import { useContext, useState } from 'react';
 

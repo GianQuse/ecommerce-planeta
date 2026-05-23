@@ -1,8 +1,8 @@
 import { useParams, Link } from 'react-router-dom';
 import { useApiList } from '../../hooks/useApi';
 import { useEffect, useContext } from 'react';
-import { cartContext } from './Cart/CartContext';
-import Skeleton from '../Skeleton';
+import { cartContext } from '../../context/CartContext';
+import Skeleton from '../UI/Skeleton';
 
 export function ItemListContainer() {
 

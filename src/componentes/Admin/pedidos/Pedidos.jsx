@@ -1,8 +1,8 @@
-import { useApiOrders } from "../../hooks/useApi";
+import { useApiOrders } from '../../../hooks/useApi';
 import { useNavigate } from "react-router-dom";
 import { CheckEstados } from "./CheckEstados";
 import { useState } from "react";
-import { agruparPorCategoria } from "../../utils/pedidos/agruparCategoria";
+import { agruparPorCategoria } from '../../../utils/pedidos/agruparCategoria';
 import styles from './Pedidos.module.css';
 
 export const Pedidos = () => {

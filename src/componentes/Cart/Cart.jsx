@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import { cartContext } from "./CartContext";
+import { cartContext } from '../../context/CartContext';
 import { Link } from "react-router-dom";
-import Skeleton from "../Skeleton";
+import Skeleton from '../UI/Skeleton';
 import styles from './Cart.module.css';
 
 export const Cart = () => {

@@ -1,7 +1,7 @@
-import { useApiMenu } from '../hooks/useApi';
+import { useApiMenu } from '../../hooks/useApi';
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { cartContext } from './Cart/CartContext';
+import { cartContext } from '../../context/CartContext';
 
 export default function Recomendado({ currentID }) {
 

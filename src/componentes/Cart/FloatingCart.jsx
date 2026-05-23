@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import cartIcon from '/imagenes/carrito-de-compras.png';
 import { useContext } from 'react';
-import { cartContext } from './CartContext.jsx';
+import { cartContext } from '../../context/CartContext';
 
 function FloatingCart() {
   const { totalItemsInCart } = useContext(cartContext);

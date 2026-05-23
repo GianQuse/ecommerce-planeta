@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { doc, getFirestore, updateDoc, setDoc } from "firebase/firestore";
 import Swal from 'sweetalert2';
 import styles from './Pedidos.module.css';
-import { useDelivery } from './DeliveryContext';
 
 export const CheckEstados = ({ estado, id, delivery, mostrarEstado }) => {
 
