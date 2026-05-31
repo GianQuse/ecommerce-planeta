@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { API_URL } from '../../../config/api';
 
 export default function CreateProduct() {
 
@@ -30,7 +31,7 @@ export default function CreateProduct() {
             setLoading(true);
 
             const response = await fetch(
-                'http://localhost:3000/products',
+                `${API_URL}/products`,
                 {
                     method: 'POST',
 

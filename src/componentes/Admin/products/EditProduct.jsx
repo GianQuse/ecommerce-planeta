@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
+import { API_URL } from '../../../config/api';
+
 export default function EditProduct() {
 
     const { id } = useParams();
@@ -21,7 +23,7 @@ export default function EditProduct() {
     // Obtener producto
     useEffect(() => {
 
-        fetch(`http://localhost:3000/products/${id}`)
+        fetch(`${API_URL}/products/${id}`)
 
             .then((response) => response.json())
 
@@ -72,7 +74,7 @@ export default function EditProduct() {
 
             const response = await fetch(
 
-                `http://localhost:3000/products/${id}`,
+                `${API_URL}/products/${id}`,
 
                 {
                     method: 'PATCH',

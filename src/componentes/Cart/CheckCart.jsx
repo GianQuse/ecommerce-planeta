@@ -6,6 +6,8 @@ import { useContext, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
+import { API_URL } from '../../config/api';
+
 import Swal from 'sweetalert2';
 
 import withReactContent from 'sweetalert2-react-content';
@@ -76,7 +78,7 @@ export const CheckCart = () => {
 
             const response = await fetch(
 
-                'http://localhost:3000/orders',
+                '${API_URL}/orders',
 
                 {
 

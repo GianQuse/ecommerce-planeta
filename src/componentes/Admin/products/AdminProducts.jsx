@@ -1,5 +1,6 @@
 import { useApiMenu } from '../../../hooks/useApi';
 import { Link } from 'react-router-dom';
+import { API_URL } from '../../../config/api';
 
 export default function AdminProducts() {
 
@@ -16,7 +17,7 @@ export default function AdminProducts() {
         try {
 
             const response = await fetch(
-                `http://localhost:3000/products/${id}`,
+                `${API_URL}/products/${id}`,
                 {
                     method: 'DELETE'
                 }

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { API_URL } from '../config/api';
+
 export function useApiState() {
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -12,7 +14,7 @@ export function useApiMenu() {
 
     useEffect(() => {
 
-        fetch("http://localhost:3000/products")
+        fetch(`${API_URL}/products`)
 
             .then((response) => response.json())
 
@@ -39,7 +41,7 @@ export function useApiList(categoria) {
 
     useEffect(() => {
 
-        fetch(`http://localhost:3000/products`)
+        fetch(`${API_URL}/products`)
 
             .then((response) => response.json())
 
@@ -77,7 +79,7 @@ export function useApiDetail(id) {
 
     useEffect(() => {
 
-        fetch(`http://localhost:3000/products/${id}`)
+        fetch(`${API_URL}/products/${id}`)
 
             .then((response) => response.json())
 
@@ -120,7 +122,7 @@ export function useApiOrders() {
 
     useEffect(() => {
 
-        fetch("http://localhost:3000/orders")
+        fetch(`${API_URL}/orders`)
 
             .then((response) => response.json())
 

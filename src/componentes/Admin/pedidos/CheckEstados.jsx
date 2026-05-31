@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import { API_URL } from "../../../config/api";
+
 import Swal from "sweetalert2";
 
 import styles from "./Pedidos.module.css";
@@ -28,7 +30,7 @@ export default function CheckEstados({
 
             const response = await fetch(
 
-                `http://localhost:3000/orders/${id}`,
+                `${API_URL}/orders/${id}`,
 
                 {
                     method: "PATCH",
